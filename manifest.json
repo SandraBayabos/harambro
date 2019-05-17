@@ -5,7 +5,18 @@
   "permissions": [
     "activeTab",
     "declarativeContent",
+    "<all_urls>",
     "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
   ],
   "background": {
     "scripts": [
