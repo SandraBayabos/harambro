@@ -22,4 +22,10 @@ window.onload = function () {
   });
 
   document.getElementsByTagName('html')[0].style.display = 'block'
+
+  let links = document.body.querySelectorAll('a')
+  console.log(links)
+  links.forEach(link => {
+    link.setAttribute('href', '#')
+  })
 }
