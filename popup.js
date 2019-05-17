@@ -8,3 +8,11 @@ blurWord.onclick = function myFunction() {
     )
   })
 }
+
+/* Button logic
+   if button is on :
+    return blur word function
+    else :
+    prompt a password
+    disable blur word function.
+*/
