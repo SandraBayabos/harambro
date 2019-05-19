@@ -3,19 +3,14 @@
 
 <head>
   <style>
-    button {
-      height: 30px;
-      width: 30px;
-      outline: none;
-    }
   .container{
-    display: flex;
+    display: inline-flex;
   }
   .switch {
   position: relative;
   display: inline-block;
   width: 40px;
-  height: 25px;
+  height: 23px;
 }
 
 
@@ -74,12 +69,13 @@ input:checked + .slider:before {
   <div class="container">
     <span>Harambro&nbsp</span>
   <label class="switch">
-    <input type="checkbox">
+    <input type="checkbox" checked>
     <span class="slider round"></span>
 </span>
 </div>
 </header>
-  <button id="blurWord"></button>
+<button id="go-to-options">Options</button>
+  <!-- <button id="blurWord"></button> -->
   <script src="popup.js"></script>
 </body>
 

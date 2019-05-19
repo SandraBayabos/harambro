@@ -15,13 +15,13 @@ window.onload = function () {
     }
   }
 
-  let images = document.body.querySelectorAll('img');
-  images.forEach(image => {
-    console.log(image);
-    image.style.filter = 'blur(10px)'
-  });
+  // let images = document.body.querySelectorAll('img');
+  // images.forEach(image => {
+  //   console.log(image);
+  //   image.style.filter = 'blur(10px)'
+  // });
 
-  document.getElementsByTagName('html')[0].style.display = 'block'
+  document.getElementsByTagName('html')[0].style.display = 'inline-flex'
 
   let links = document.body.querySelectorAll('a')
   console.log(links)
