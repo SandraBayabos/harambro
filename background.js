@@ -6,10 +6,38 @@ chrome.runtime.onInstalled.addListener(function () {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
     chrome.declarativeContent.onPageChanged.addRules([{
       conditions: [new chrome.declarativeContent.PageStateMatcher({
-        pageUrl: { schemes: ['https','http'] },
+        pageUrl: { schemes: ['https', 'http'] },
       })
       ],
       actions: [new chrome.declarativeContent.ShowPageAction()]
     }]);
   });
 });
+
+// Basic fetch request to fetch a JSON file and print it to the console.
+//fetch() takes one argument, returns a promise containing the response, json() extracts the JSON content
+fetch('http://google.com/images.json')
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (myJson) {
+    console.log(JSON.stringify(myJson));
+  });
+
+//To post a response from the server
+const Url = 'https://google.com/images';
+const image = {
+  name: "",
+  id: "",
+}
+axios({
+  method: 'post',
+  url: Url,
+  data: {
+    image
+  }
+})
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+
+
