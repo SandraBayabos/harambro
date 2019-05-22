@@ -18,28 +18,47 @@ chrome.runtime.onInstalled.addListener(function () {
 //return a JWT to store in browser
 // Basic fetch request to fetch a JSON file and print it to the console.
 //fetch() takes one argument, returns a promise containing the response, json() extracts the JSON content
-fetch('http://google.com/images.json')
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (myJson) {
-    console.log(JSON.stringify(myJson));
-  });
+// fetch('http://google.com/images.json')
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (myJson) {
+//     console.log(JSON.stringify(myJson));
+//   });
 
-//To post a response from the server
-const Url = 'https://google.com/images';
-const image = {
-  name: "",
-  id: "",
-}
-axios({
-  method: 'post',
-  url: Url,
-  data: {
-    image
+// //To post a response from the server
+// const Url = 'https://google.com/images';
+// const image = {
+//   name: "",
+//   id: "",
+// }
+// axios({
+//   method: 'post',
+//   url: Url,
+//   data: {
+//     image
+//   }
+// })
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err))
+
+const app = document.getElementById('image')
+const container = document.createElement('div')
+container.setAttribute('class', 'container')
+app.appendChild('container')
+
+var request = new XMLHttpRequest()
+request.open('GET', 'https://moderatecontent.com/img', true)
+request.onload = function () {
+  var data = JSON.parse(this.response)
+
+  if (request.status >= 200 && request.status < 400) {
+    data.forEach(image => {
+      console.log(image)
+    })
+  } else {
+    console.log('error')
   }
-})
-  .then(data => console.log(data))
-  .catch(err => console.log(err))
+}
 
-
+request.send()
