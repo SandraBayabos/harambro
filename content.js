@@ -41,11 +41,16 @@ chrome.storage.local.get('enabled', data => {
 
       document.getElementsByTagName('html')[0].style.display = 'inline-flex'
 
+      let badWords=['sugar','momo','boobs','rose']
       let links = document.body.querySelectorAll('a')
-      // console.log(links)
-      links.forEach(link => {
-        link.setAttribute('href', '#')
-      })
+
+      for(let i=0;i<links.length;i++){
+        for(let j=0;j<badWords.length;j++){
+          if (links[i].href.toLowerCase().includes(badWords[j])){
+            links[i].addEventListener('click', function (e) {e.preventDefault();})
+          }
+        }
+      }
     }
   }
   else {
