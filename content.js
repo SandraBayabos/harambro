@@ -18,24 +18,28 @@ chrome.storage.local.get('enabled', data => {
         }
       }
 
-      let images = document.body.querySelectorAll('img');
-      images.forEach(image => {
-        // console.log(image);
-        image.style.filter = 'blur(10px)'
-      });
-
       // let images = document.body.querySelectorAll('img');
       // images.forEach(image => {
       //   image.style.filter = 'blur(10px)'
       // });
-      let images = document.body.querySelectorAll('img');
-      image = images.length;
-      for (var i = 0; i < images.length; i++) {
-        if (!images.id == 'logo') {
-          image.style.filter = 'blur(10px)'
+      // let images = document.body.querySelectorAll('img');
+      // // for (let i = 0; i < images.length; i++) {
+      // images.forEach(image => {
+      //   if (images.alt == "Google") {
+      //     console.log(image.id)
+      //     images.setAttribute('alt', '')
+      //   } else {
+      //     images.style.filter = 'blur(10px)'
+      //   }
+      // });
+      // }
+      document.body.querySelectorAll('img').forEach(image => {
+        if (image.id !== 'hplogo' && image.id !== 'logo' && image.alt !== 'Google') {
+          image.style.filter = "blur(10px)"
         }
-      }
+      });
 
+      document.getElementsByTagName('html')[0].style.display = 'inline-flex'
 
       let links = document.body.querySelectorAll('a')
       // console.log(links)
