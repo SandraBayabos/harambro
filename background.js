@@ -14,29 +14,5 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 });
 
-fetch('https://www.moderatecontent.com/content').then(function (response) {
-  return response.json();
-})
-  .then(function (myJson) {
-    console.log(JSON.stringify(myJson));
-  });
+//Blur out everything, just don't include the searchform 
 
-postData('https://www.moderatecontent.com/answer', { answer: 42 })
-  .then(data => console.log(JSON.stringify(data)))
-  .catch(error => console.log(error));
-
-function postData(url = '', data = {}) {
-  return fetch(url, {
-    method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    redirect: 'follow',
-    referrer: 'no-referrer',
-    body: JSON.stringify(data),
-  })
-    .then(response => response.json());
-}
