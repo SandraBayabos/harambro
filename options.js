@@ -6,20 +6,22 @@ var i;
 for (i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
   var deleteButton = document.createElement("BUTTON");
-  span.className = "close";
+  //add dataset to deleteButton
+  deleteButton.dataset.id = 'deleteButton'
+
   span.appendChild(deleteButton);
   myNodelist[i].appendChild(span);
 }
 
 // Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function () {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
+// var close = document.getElementsByClassName("close");
+// var i;
+// for (i = 0; i < close.length; i++) {
+//   close[i].onclick = function () {
+//     var div = this.parentElement;
+//     div.style.display = "none";
+//   }
+// }
 
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector('ul');
@@ -39,24 +41,56 @@ function getItems() {
       return
     }
     for (let i = 0; i < result.blackListItem.length; i++) {
-      let t = document.createTextNode(result.blackListItem[i])
+      const keyword = result.blackListItem[i]
+      let t = document.createTextNode(keyword)
       let li = document.createElement("li")
       li.appendChild(t)
+      li.id = keyword
       document.getElementById("myUL").appendChild(li)
       let span = document.createElement("SPAN");
       let closeButton = document.createElement("BUTTON");
+      closeButton.id = keyword
+      closeButton.classList.add('delete-btn')
       closeButton.innerHTML = "X"
-      span.className = "close";
       span.appendChild(closeButton);
       li.appendChild(span);
 
-      for (i = 0; i < close.length; i++) {
-        close[i].onclick = function () {
-          let div = this.parentElement;
-          //add in logic here to delete it from chrome storage
-          div.style.display = "none";
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.onclick = function (e) {
+          const wordToRemove = e.target.id
+          const targetLi = document.getElementById(wordToRemove)
+
+          // remove the clicked <li>
+          targetLi.parentNode.removeChild(targetLi)
+
+          // remove keyword from chrome storage
+          chrome.storage.sync.get(['blackListItem'], function ({ blackListItem }) {
+            chrome.storage.sync.set({ blackListItem: blackListItem.filter(keyword => keyword != wordToRemove) })
+          })
         }
-      }
+      })
+
+      // for (i = 0; i < close.length; i++) {
+      //   close[i].onclick = function () {
+      //     let div = this.parentElement;
+      //     div.style.display = "none";
+
+      //add in logic here to delete it from chrome storage
+
+      // let wordToRemove = document.querySelector('li').childNodes[i].data
+      // console.log(bannedWords)
+
+      // chrome.storage.sync.get(['blackListItem'], function (result) {
+      //   let items = blackListItem
+
+      //   let ind = items.indexOf(wordToRemove)
+
+      //   items.splice(//something here)
+      //     chrome.storage.set({ blackListItem: items })
+      // })
+
+      //   }
+      // }
     }
   })
 }
@@ -79,20 +113,6 @@ addItem.onclick = (newElement) => {
         getItems()
       });
     })
-    // takes in the inputValue that the user types in & appends it into the list below
-    // var t = document.createTextNode(inputValue);
-    // li.appendChild(t);
-    // if (inputValue === '') {
-    //   alert("You must write something!");
-    // }
-    //  else {
-
-    //   //to retrieve item from chrome storage
-    //   chrome.storage.sync.get(['asd'], function (result) {
-    //     console.log(result)
-    //     document.getElementById("myUL").appendChild(li);
-    //   })
-    // }
     document.getElementById("myInput").value = "";
   }
 }
