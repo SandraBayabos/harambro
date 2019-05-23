@@ -21,7 +21,7 @@ window.onload = function () {
   // });
   let images = document.body.querySelectorAll('img');
   image = images.length;
-  for (var i = 0; i < image; i++) {
+  for (var i = 0; i < images.length; i++) {
     if (!images.id == 'logo') {
       image.style.filter = 'blur(10px)'
     }
