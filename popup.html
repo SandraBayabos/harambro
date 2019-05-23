@@ -3,80 +3,83 @@
 
 <head>
   <style>
-  .container{
-    display: inline-flex;
-  }
-  .switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 23px;
-}
+    .container {
+      display: inline-flex;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 23px;
+    }
 
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 15px;
-  width: 15px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 15px;
+      width: 15px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
 
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  -ms-transform: translateX(18px);
-  transform: translateX(18px);
-}
+    input:checked+.slider:before {
+      -webkit-transform: translateX(18px);
+      -ms-transform: translateX(18px);
+      transform: translateX(18px);
+    }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
 
-.slider.round:before {
-  border-radius: 50%;
-}
+    .slider.round:before {
+      border-radius: 50%;
+    }
   </style>
   <!-- <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
   <!-- <title>Document</title> -->
+  <link href="bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
   <header>
-  <div class="container">
-    <span>Harambro&nbsp</span>
-  <label class="switch">
-    <input id="toggle" type="checkbox">
-    <span class="slider round"></span>
-</span>
-</div>
-</header>
-<button id="go-to-options">Options</button>
+    <div class="container">
+      <span>Harambro&nbsp</span>
+      <label class="switch">
+        <input id="toggle" type="checkbox">
+        <span class="slider round"></span>
+        </span>
+    </div>
+  </header>
+  <button id="go-to-options">Options</button>
   <!-- <button id="blurWord"></button> -->
   <script src="popup.js"></script>
+  <script src="bootstrap.min.js"></script>
 </body>
 
 </html>
