@@ -65,33 +65,37 @@ function getItems() {
 addItem.onclick = (newElement) => {
   // var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
+  if (inputValue === '') {
+    alert('Please insert a word to blacklist.')
+  } else {
 
-  //to retrieve item from chrome storage
-  chrome.storage.sync.get(['blackListItem'], function (result) {
-    let items = result.blackListItem
-    if (!items) {
-      items = []
-    }
-    items = [...items, inputValue]
-    chrome.storage.sync.set({ blackListItem: items }, function () {
-      getItems()
-    });
-  })
-  // takes in the inputValue that the user types in & appends it into the list below
-  // var t = document.createTextNode(inputValue);
-  // li.appendChild(t);
-  // if (inputValue === '') {
-  //   alert("You must write something!");
-  // }
-  //  else {
+    //to retrieve item from chrome storage
+    chrome.storage.sync.get(['blackListItem'], function (result) {
+      let items = result.blackListItem
+      if (!items) {
+        items = []
+      }
+      items = [...items, inputValue]
+      chrome.storage.sync.set({ blackListItem: items }, function () {
+        getItems()
+      });
+    })
+    // takes in the inputValue that the user types in & appends it into the list below
+    // var t = document.createTextNode(inputValue);
+    // li.appendChild(t);
+    // if (inputValue === '') {
+    //   alert("You must write something!");
+    // }
+    //  else {
 
-  //   //to retrieve item from chrome storage
-  //   chrome.storage.sync.get(['asd'], function (result) {
-  //     console.log(result)
-  //     document.getElementById("myUL").appendChild(li);
-  //   })
-  // }
-  document.getElementById("myInput").value = "";
+    //   //to retrieve item from chrome storage
+    //   chrome.storage.sync.get(['asd'], function (result) {
+    //     console.log(result)
+    //     document.getElementById("myUL").appendChild(li);
+    //   })
+    // }
+    document.getElementById("myInput").value = "";
+  }
 }
 
 getItems()
