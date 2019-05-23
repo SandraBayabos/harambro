@@ -36,6 +36,9 @@ let addItem = document.getElementById('addButton');
 function getItems() {
   document.getElementById("myUL").innerHTML = ""
   chrome.storage.sync.get(['blackListItem'], function (result) {
+    if (!result.blackListItem) {
+      return
+    }
     for (let i = 0; i < result.blackListItem.length; i++) {
       let t = document.createTextNode(result.blackListItem[i])
       let li = document.createElement("li")
@@ -66,7 +69,7 @@ addItem.onclick = (newElement) => {
   //to retrieve item from chrome storage
   chrome.storage.sync.get(['blackListItem'], function (result) {
     let items = result.blackListItem
-    if (items.constructor !== Array) {
+    if (!items) {
       items = []
     }
     items = [...items, inputValue]
