@@ -6,8 +6,6 @@ var i;
 for (i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
   var deleteButton = document.createElement("BUTTON");
-  //add dataset to deleteButton
-  deleteButton.dataset.id = 'deleteButton'
 
   span.appendChild(deleteButton);
   myNodelist[i].appendChild(span);
@@ -63,38 +61,18 @@ function getItems() {
           // remove the clicked <li>
           targetLi.parentNode.removeChild(targetLi)
 
-          // remove keyword from chrome storage
+          // remove keyword from chrome storage. function({blackListItem}) is same as results.blackListItem
           chrome.storage.sync.get(['blackListItem'], function ({ blackListItem }) {
             chrome.storage.sync.set({ blackListItem: blackListItem.filter(keyword => keyword != wordToRemove) })
           })
         }
       })
-
-      // for (i = 0; i < close.length; i++) {
-      //   close[i].onclick = function () {
-      //     let div = this.parentElement;
-      //     div.style.display = "none";
-
-      //add in logic here to delete it from chrome storage
-
-      // let wordToRemove = document.querySelector('li').childNodes[i].data
-      // console.log(bannedWords)
-
-      // chrome.storage.sync.get(['blackListItem'], function (result) {
-      //   let items = blackListItem
-
-      //   let ind = items.indexOf(wordToRemove)
-
-      //   items.splice(//something here)
-      //     chrome.storage.set({ blackListItem: items })
-      // })
-
-      //   }
-      // }
     }
   })
 }
 
+
+let items = []
 addItem.onclick = (newElement) => {
   // var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
@@ -104,7 +82,8 @@ addItem.onclick = (newElement) => {
 
     //to retrieve item from chrome storage
     chrome.storage.sync.get(['blackListItem'], function (result) {
-      let items = result.blackListItem
+      //items is defined as a variable in global scope and you are assigning it a value within the empty array
+      items = result.blackListItem
       if (!items) {
         items = []
       }
@@ -112,9 +91,10 @@ addItem.onclick = (newElement) => {
       chrome.storage.sync.set({ blackListItem: items }, function () {
         getItems()
       });
+      console.log(items)
     })
+
     document.getElementById("myInput").value = "";
   }
 }
-
 getItems()
