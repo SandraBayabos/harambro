@@ -1,9 +1,13 @@
-// import items from 'options.js'
-// console.log(items)
-
 chrome.storage.local.get('enabled', data => {
+<<<<<<< HEAD
   console.log(data.enabled)
   function working() {
+=======
+  chrome.storage.sync.get(['blackListItem'], function (result) {
+  console.log(result.blackListItem)
+  let badWords = result.blackListItem
+  if (data.enabled) {
+>>>>>>> 19ea74b792f3ef7335e72dc196ec51943efc8d0a
     document.getElementsByTagName('html')[0].style.display = 'none'
 
     window.onload = function () {
@@ -16,7 +20,8 @@ chrome.storage.local.get('enabled', data => {
         len2 = myChildren.length;
         for (var jj = 0; jj < len2; jj++) {
           if (myChildren[jj].nodeType === 3) {
-            myChildren[jj].nodeValue = myChildren[jj].nodeValue.replace(/sugar|momo challenge|boobs/gi, "***");
+            const regexBadWords = new RegExp(badWords.join('|'), 'gi')
+            myChildren[jj].nodeValue = myChildren[jj].nodeValue.replace(regexBadWords, "***");
           }
         }
       }
@@ -28,8 +33,7 @@ chrome.storage.local.get('enabled', data => {
       });
 
       document.getElementsByTagName('html')[0].style.display = 'inline-flex'
-
-      let badWords = ['sugar', 'momo', 'boobs', 'rose']
+      
       let links = document.body.querySelectorAll('a')
 
       for (let i = 0; i < links.length; i++) {
@@ -47,7 +51,11 @@ chrome.storage.local.get('enabled', data => {
   else {
 
   }
+<<<<<<< HEAD
   //it is disabled
 
+=======
+})
+>>>>>>> 19ea74b792f3ef7335e72dc196ec51943efc8d0a
 });
 

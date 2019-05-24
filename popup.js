@@ -25,8 +25,6 @@ chrome.storage.local.get('enabled', data => {
   console.log(data.enabled, 'get')
   enabled = !!data.enabled;
   myButton.checked = enabled ? true : false;
-  console.log(enabled, "get")
-
 });
 
 myButton.onclick = () => {

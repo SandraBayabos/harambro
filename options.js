@@ -35,6 +35,7 @@ let addItem = document.getElementById('addButton');
 function getItems() {
   document.getElementById("myUL").innerHTML = ""
   chrome.storage.sync.get(['blackListItem'], function (result) {
+    console.log(result)
     if (!result.blackListItem) {
       return
     }
@@ -63,6 +64,7 @@ function getItems() {
 
           // remove keyword from chrome storage. function({blackListItem}) is same as results.blackListItem
           chrome.storage.sync.get(['blackListItem'], function ({ blackListItem }) {
+            console.log(blackListItem)
             chrome.storage.sync.set({ blackListItem: blackListItem.filter(keyword => keyword != wordToRemove) })
           })
         }
