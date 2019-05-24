@@ -25,19 +25,11 @@ chrome.storage.local.get('enabled', data => {
   console.log(data.enabled, 'get')
   enabled = !!data.enabled;
   myButton.checked = enabled ? true : false;
-
-
-
-
 });
 
 myButton.onclick = () => {
   console.log(enabled, 'click')
-
   enabled = !enabled;
   chrome.tabs.reload()
-
   chrome.storage.local.set({ enabled: enabled });
-
-
 };
