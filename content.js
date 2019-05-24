@@ -1,9 +1,8 @@
-// import items from 'options.js'
-// console.log(items)
-
 chrome.storage.local.get('enabled', data => {
-  console.log(data.enabled)
-  function working() {
+  chrome.storage.sync.get(['blackListItem'], function (result) {
+  console.log(result.blackListItem)
+  let badWords = result.blackListItem
+  if (data.enabled) {
     document.getElementsByTagName('html')[0].style.display = 'none'
 
     window.onload = function () {
@@ -16,7 +15,8 @@ chrome.storage.local.get('enabled', data => {
         len2 = myChildren.length;
         for (var jj = 0; jj < len2; jj++) {
           if (myChildren[jj].nodeType === 3) {
-            myChildren[jj].nodeValue = myChildren[jj].nodeValue.replace(/sugar|momo challenge|boobs/gi, "***");
+            const regexBadWords = new RegExp(badWords.join('|'), 'gi')
+            myChildren[jj].nodeValue = myChildren[jj].nodeValue.replace(regexBadWords, "***");
           }
         }
       }
@@ -28,8 +28,7 @@ chrome.storage.local.get('enabled', data => {
       });
 
       document.getElementsByTagName('html')[0].style.display = 'inline-flex'
-
-      let badWords = ['sugar', 'momo', 'boobs', 'rose']
+      
       let links = document.body.querySelectorAll('a')
 
       for (let i = 0; i < links.length; i++) {
@@ -41,40 +40,9 @@ chrome.storage.local.get('enabled', data => {
       }
     }
   }
-  if (data.enabled) {
-    working()
-  }
   else {
-    if (data.enabled == false) {
-
-
-
-      const password = prompt("Please key in your password");
-      if (password !== '1234') {
-        alert('Please key in a correct password.')
-        chrome.storage.local.set({ enabled: true })
-        return working();
-      }
-
-
-
-
-
-
-
-
-
-
-    }
-
+    //it is disabled
   }
-
-
-
-
-
-
-  //it is disabled
-
+})
 });
 
