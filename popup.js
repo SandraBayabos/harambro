@@ -25,23 +25,27 @@ chrome.storage.local.get('enabled', data => {
   console.log(data.enabled, 'get')
   enabled = !!data.enabled;
   myButton.checked = enabled ? true : false;
-  console.log(enabled,"get")
-  
+  console.log(enabled, "get")
+
 });
 
 myButton.onclick = () => {
   console.log(enabled, 'click')
 
   enabled = !enabled;
-  
+
 
   chrome.storage.local.set({ enabled: enabled });
-if (enabled == false) {
+  if (enabled == false) {
     const password = prompt("Please key in your password");
     if (password !== '1234') {
       alert('Please key in a correct password.')
       chrome.storage.local.set({ enabled: true })
     }
-}
-chrome.tabs.reload()
+  }
+
+
+  chrome.tabs.reload()
+
+
 };

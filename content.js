@@ -45,7 +45,7 @@ chrome.storage.local.get('enabled', data => {
     working()
   }
   else {
-    
+
   }
   //it is disabled
 
