@@ -17,5 +17,3 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 });
 
-//Blur out everything, just don't include the searchform 
-

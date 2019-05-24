@@ -1,7 +1,6 @@
 chrome.storage.local.get('enabled', data => {
   chrome.storage.sync.get(['blackListItem'], function (result) {
-    console.log(result.blackListItem)
-  console.log(data.enabled)
+  console.log(result.blackListItem)
   let badWords = result.blackListItem
   if (data.enabled) {
     document.getElementsByTagName('html')[0].style.display = 'none'
