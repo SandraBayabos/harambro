@@ -28,10 +28,16 @@
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
               <p>Enter keywords here</p>
-              <input type="text" id="myInput">
-              <button id="addButton">Add</button>
-              <ul id="myUL">
+              <div class="input-group mb-3 d-flex justify-content-center ">
+                <input type="text" id="myInput" class="form" placeholder="Enter keyword here" aria-label="input"
+                  aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="addButton">Add</button>
+              </div>
+
+              <ul class="list-group list-group-flush d-flex justify-content-center">
+                <li class="list-group-item justify-content-center" id="myUL"></li>
               </ul>
+
             </div>
           </div>
         </div>
