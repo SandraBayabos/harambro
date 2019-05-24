@@ -8,6 +8,11 @@
   <title>Settings</title>
   <link href="bootstrap.min.css" rel="stylesheet">
   <link href="custom.css" rel="stylesheet">
+  <style>
+    .delete-btn {
+      float: right;
+    }
+  </style>
 </head>
 
 <body>
@@ -31,10 +36,10 @@
               <div class="input-group mb-3 d-flex justify-content-center ">
                 <input type="text" id="myInput" class="form" placeholder="Enter keyword here" aria-label="input"
                   aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="addButton">Add</button>
+                <button class="btn btn-outline-info" type="button" id="addButton">Add</button>
               </div>
 
-              <ul class="list-group list-group-flush d-flex justify-content-center">
+              <ul class="list-group list-group-flush d-flex justify-content-center" style="list-style: none;">
                 <li class="list-group-item justify-content-center" id="myUL"></li>
               </ul>
 
