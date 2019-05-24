@@ -45,14 +45,18 @@ function getItems() {
       let li = document.createElement("li")
       li.appendChild(t)
       li.id = keyword
+      li.style.width = "50%"
+      li.style.margin = "6px"
+      li.style.marginLeft = "auto"
+      li.style.marginRight = "auto"
       document.getElementById("myUL").appendChild(li)
-      let span = document.createElement("SPAN");
+      // let span = document.createElement("SPAN");
       let closeButton = document.createElement("BUTTON");
       closeButton.id = keyword
       closeButton.classList.add('delete-btn')
       closeButton.innerHTML = "X"
-      span.appendChild(closeButton);
-      li.appendChild(span);
+      // span.appendChild(closeButton);
+      li.appendChild(closeButton);
 
       document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.onclick = function (e) {
