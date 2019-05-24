@@ -4,6 +4,7 @@ chrome.runtime.onInstalled.addListener(function () {
     console.log("The color is green.");
 
   });
+  chrome.storage.local.set({ enabled: true })
 
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
     chrome.declarativeContent.onPageChanged.addRules([{
