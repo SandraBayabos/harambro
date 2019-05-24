@@ -2,39 +2,80 @@
 <html lang="en">
 
 <head>
-  <!-- <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title> -->
-  <style>
-    /* button {
-      height: 30px;
-      width: 30px;
-      outline: none;
-      margin: 10px;
-    } */
-  </style>
+  <title>Settings</title>
   <link href="bootstrap.min.css" rel="stylesheet">
   <link href="custom.css" rel="stylesheet">
 </head>
 
 <body>
-  <!-- <div id="buttonDiv">
-  </div>
-  <div>
-    <p>Choose a different background color!</p>
-  </div> -->
+  <h1 text-align="center">Harambro</h1>
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            Blacklist
+          </button>
+        </h2>
+      </div>
 
-  <div id="myDIV" class="header">
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <input type="text" id="myInput">
+          <button id="addButton">Add</button>
+          <ul id="myUL">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="false" aria-controls="collapseTwo">
+            View our app
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Do more with our webapp</p>
+          <button>View app</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="false" aria-controls="collapseThree">
+            About us
+          </button>
+        </h2>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>We are Team 2 from NEXT academy and we are awesome!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="myDIV" class="header">
     <h2>My Blacklist</h2>
     <input type="text" id="myInput">
     <button id="addButton">Add</button>
-  </div>
+  </div> -->
 
-  <ul id="myUL">
-  </ul>
-  <script src="options.js"></script>
+  <!-- <ul id="myUL">
+  </ul>-->
+  <script src="./jquery-3.4.1.min.js"></script>
   <script src="bootstrap.min.js"></script>
+  <script src="options.js"></script>
 </body>
 
 </html>
