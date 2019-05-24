@@ -3,7 +3,7 @@
 
 chrome.storage.local.get('enabled', data => {
   console.log(data.enabled)
-  if (data.enabled) {
+  function working() {
     document.getElementsByTagName('html')[0].style.display = 'none'
 
     window.onload = function () {
@@ -21,21 +21,6 @@ chrome.storage.local.get('enabled', data => {
         }
       }
 
-      // let images = document.body.querySelectorAll('img');
-      // images.forEach(image => {
-      //   image.style.filter = 'blur(10px)'
-      // });
-      // let images = document.body.querySelectorAll('img');
-      // // for (let i = 0; i < images.length; i++) {
-      // images.forEach(image => {
-      //   if (images.alt == "Google") {
-      //     console.log(image.id)
-      //     images.setAttribute('alt', '')
-      //   } else {
-      //     images.style.filter = 'blur(10px)'
-      //   }
-      // });
-      // }
       document.body.querySelectorAll('img').forEach(image => {
         if (image.id !== 'hplogo' && image.id !== 'logo' && image.alt !== 'Google') {
           image.style.filter = "blur(10px)"
@@ -56,8 +41,40 @@ chrome.storage.local.get('enabled', data => {
       }
     }
   }
-  else {
-    //it is disabled
+  if (data.enabled) {
+    working()
   }
+  else {
+    if (data.enabled == false) {
+
+
+
+      const password = prompt("Please key in your password");
+      if (password !== '1234') {
+        alert('Please key in a correct password.')
+        chrome.storage.local.set({ enabled: true })
+        return working();
+      }
+
+
+
+
+
+
+
+
+
+
+    }
+
+  }
+
+
+
+
+
+
+  //it is disabled
+
 });
 
