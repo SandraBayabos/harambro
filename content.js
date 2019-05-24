@@ -45,35 +45,8 @@ chrome.storage.local.get('enabled', data => {
     working()
   }
   else {
-    if (data.enabled == false) {
-
-
-
-      const password = prompt("Please key in your password");
-      if (password !== '1234') {
-        alert('Please key in a correct password.')
-        chrome.storage.local.set({ enabled: true })
-        return working();
-      }
-
-
-
-
-
-
-
-
-
-
-    }
-
+    
   }
-
-
-
-
-
-
   //it is disabled
 
 });
