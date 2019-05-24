@@ -1,3 +1,6 @@
+// import items from 'options.js'
+// console.log(items)
+
 chrome.storage.local.get('enabled', data => {
   console.log(data.enabled)
   if (data.enabled) {
@@ -41,13 +44,13 @@ chrome.storage.local.get('enabled', data => {
 
       document.getElementsByTagName('html')[0].style.display = 'inline-flex'
 
-      let badWords=['sugar','momo','boobs','rose']
+      let badWords = ['sugar', 'momo', 'boobs', 'rose']
       let links = document.body.querySelectorAll('a')
 
-      for(let i=0;i<links.length;i++){
-        for(let j=0;j<badWords.length;j++){
-          if (links[i].href.toLowerCase().includes(badWords[j])){
-            links[i].addEventListener('click', function (e) {e.preventDefault();})
+      for (let i = 0; i < links.length; i++) {
+        for (let j = 0; j < badWords.length; j++) {
+          if (links[i].href.toLowerCase().includes(badWords[j])) {
+            links[i].addEventListener('click', function (e) { e.preventDefault(); })
           }
         }
       }
