@@ -35,6 +35,23 @@ chrome.storage.local.get('enabled', data => {
           for (let j = 0; j < badWords.length; j++) {
             if (links[i].href.toLowerCase().includes(badWords[j])) {
               links[i].addEventListener('click', function (e) { e.preventDefault(); })
+
+              //saving links to database onclick
+
+              links[i].onclick = function () {
+                $.ajax({
+                  method: 'post',
+                  url: 'api/v1/add_entry',
+                  header: {
+                    'Authorization': chrome.storage.jwt
+                  },
+                  data: {
+                    link: links[i].src
+                  }
+
+
+                })
+              }
             }
           }
         }
