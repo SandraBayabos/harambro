@@ -39,7 +39,7 @@ function getItems() {
     if (!result.blackListItem) {
       return
     }
-    for (let i = 0; i < result.blackListItem.length; i++) {
+    for (let i = result.blackListItem.length - 1; i > 0; i--) {
       const keyword = result.blackListItem[i]
       let t = document.createTextNode(keyword)
       let li = document.createElement("li")
@@ -104,3 +104,7 @@ addItem.onclick = (newElement) => {
   }
 }
 getItems()
+
+function openWin() {
+  window.open("localhost:5000");
+}
