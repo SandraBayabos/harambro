@@ -38,7 +38,7 @@ chrome.storage.local.get('enabled', data => {
         for (var jj = 0; jj < len2; jj++) {
           if (myChildren[jj].nodeType === 3) {
             const regexBadWords = new RegExp(badWords.join('|'), 'gi')
-            myChildren[jj].nodeValue = myChildren[jj].nodeValue.replace(regexBadWords, "***");
+            myChildren[jj].nodeValue = myChildren[jj].nodeValue.replace(regexBadWords, function (blur) {return `${'*'.repeat(blur.length)}`});
           }
         }
       }
