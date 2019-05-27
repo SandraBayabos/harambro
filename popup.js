@@ -25,14 +25,6 @@ submit.setAttribute('value', "Submit");
 form.appendChild(input);
 form.appendChild(submit);
 
-//function to save jwt into chrome storage/local storage?
-
-
-
-//toggle between login page (only first time) and settings/onoff
-
-//
-
 document.getElementsByTagName('body')[0].appendChild(form);
 
 document.querySelector('#go-to-options').addEventListener('click', function () {
