@@ -52,14 +52,15 @@ chrome.storage.local.get('enabled', data => {
       }
       document.getElementsByTagName('html')[0].removeAttribute("style")
     }
+  }
   if (data.enabled) {
     document.getElementsByTagName('html')[0].style.opacity = 0
     window.addEventListener('load', work )
   }
-}
-    else {
+
+  else {
       //it is disabled
-    }
+  }
 
 });
 })

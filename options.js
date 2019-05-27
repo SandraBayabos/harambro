@@ -78,7 +78,7 @@ function getItems() {
 }
 
 
-// let items = []
+let items = []
 addItem.onclick = (newElement) => {
   // var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
@@ -91,7 +91,7 @@ addItem.onclick = (newElement) => {
       //items is defined as a variable in global scope and you are assigning it a value within the empty array
       items = result.blackListItem
       if (!items) {
-        let items = []
+        items = []
       }
       items = [...items, inputValue]
       chrome.storage.sync.set({ blackListItem: items }, function () {
