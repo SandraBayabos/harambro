@@ -41,7 +41,7 @@ chrome.storage.local.get('enabled', data => {
             myChildren[jj].nodeValue = myChildren[jj].nodeValue.replace(regexBadWords, "***");
           }
         }
-
+      }
         let images = document.body.querySelectorAll('img')
       for (let p = 0; p < images.length; p++) {
         for (let q = 0; q < badWords.length; q++) {
@@ -51,8 +51,8 @@ chrome.storage.local.get('enabled', data => {
         }
       }
       document.getElementsByTagName('html')[0].removeAttribute("style")
-    }
   }
+
   if (data.enabled) {
     document.getElementsByTagName('html')[0].style.opacity = 0
     window.addEventListener('load', work )
