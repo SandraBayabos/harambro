@@ -67,10 +67,12 @@ button.classList.add('setting')
 header.style.alignItems = 'left'
 button.classList.add('go-to-options')
 button.style.width = '25px'
-button.style.height = "25px"
+button.style.heigt = "25px"
 button.style.alignItems = 'right'
 image.style.width = '25px'
 image.style.height = '25px'
+button.style.border = 'none'
+button.style.background = 'transparent'
 
 document.querySelector('.go-to-options').addEventListener('click', function () {
   if (chrome.runtime.openOptionsPage) {
