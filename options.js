@@ -39,7 +39,7 @@ function getItems() {
     if (!result.blackListItem) {
       return
     }
-    for (let i = result.blackListItem.length - 1; i > 0; i--) {
+    for (let i = result.blackListItem.length-1; i>=0 ; i--) {
       const keyword = result.blackListItem[i]
       let t = document.createTextNode(keyword)
       let li = document.createElement("li")
