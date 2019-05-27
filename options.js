@@ -79,6 +79,7 @@ function getItems() {
 
 
 let items = []
+console.log(items)
 addItem.onclick = (newElement) => {
   // var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
