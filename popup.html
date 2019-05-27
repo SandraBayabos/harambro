@@ -3,9 +3,7 @@
 
 <head>
   <style>
-    .container {
-      display: inline-flex;
-    }
+    
 
     .switch {
       position: relative;
@@ -58,7 +56,26 @@
     .slider.round:before {
       border-radius: 50%;
     }
+
+   
+  .btn {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+  /* Darker background on mouse-over */
+  {% comment %} .btn:hover {
+  background-color: RoyalBlue; {% endcomment %}
+}
+
+}
   </style>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -81,21 +98,15 @@
 
   <header>
     <div class="container">
-      <span>Harambro&nbsp</span>
+      
       <label class="switch">
         <input id="toggle" type="checkbox">
         <span class="slider round"></span>
-        </span>
     </div>
     <!-- <i class="fas fa-lock">Locked</i>
     <i class="fas fa-lock-open">Unlocked</i> -->
-    <div>
-      <button class="button-elem btn btn-outline-success">Locked</button>
-    </div>
   </header>
-  <div>
-    <button id="go-to-options" class="btn btn-outline-dark">Settings</button>
-  </div>
+
   <script src="popup.js"></script>
   <script src="./jquery-3.4.1.min.js"></script>
   <script src="bootstrap.min.js"></script>
