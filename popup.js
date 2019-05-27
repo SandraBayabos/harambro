@@ -65,3 +65,21 @@ myButton.onclick = () => {
 
 
 };
+
+var clickState = 0;
+var btn = document.querySelector('.button-elem');
+
+btn.addEventListener('click', function () {
+
+  if (clickState == 0) {
+    // code snippet 1
+    this.textContent = 'Unlocked';
+    clickState = 1;
+  } else {
+    // code snippet 2
+    this.textContent = 'Locked';
+    clickState = 0;
+  }
+
+});
+
