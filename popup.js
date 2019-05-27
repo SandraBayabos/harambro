@@ -9,6 +9,24 @@
 //   })
 // }
 
+//Create login form in popup for use on first time
+let form = document.createElement("form");
+form.setAttribute('method', "post");
+form.setAttribute('action', "submit.php");
+
+let input = document.createElement("input"); //input element, text
+input.setAttribute('type', "text");
+input.setAttribute('name', "username");
+
+let submit = document.createElement("input"); //input element, Submit button
+submit.setAttribute('type', "submit");
+submit.setAttribute('value', "Submit");
+
+form.appendChild(input);
+form.appendChild(submit);
+
+document.getElementsByTagName('body')[0].appendChild(form);
+
 document.querySelector('#go-to-options').addEventListener('click', function () {
   if (chrome.runtime.openOptionsPage) {
     chrome.runtime.openOptionsPage();
