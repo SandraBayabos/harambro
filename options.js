@@ -79,13 +79,19 @@ function getItems() {
 
 
 let items = []
-console.log(items)
 addItem.onclick = (newElement) => {
   // var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   if (inputValue === '') {
     alert('Please insert a word to blacklist.')
-  } else {
+  } 
+  else if(/[ 0-9#$%=@!{},`~&*()'<>?.:;_|^/+\t\r\n\[\]"-]/.test( inputValue ) ) {
+    alert('Number and symbol is not allowed.');
+  }
+  else if(inputValue.length<3){
+    alert('Your word is too common/short.')
+  }
+  else {
 
     //to retrieve item from chrome storage
     chrome.storage.sync.get(['blackListItem'], function (result) {
