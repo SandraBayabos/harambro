@@ -1,4 +1,4 @@
-let items = ["sugar", "fuck", "sex", "shit", "asshole", "porn", "bitch", "momo", "pussy", "cunt", "ass", "nigger"]
+let items = ["sugar", "fuck", "sex", "shit", "asshole", "porn", "bitch", "momo", "pussy", "cunt", "nigger"]
 chrome.storage.sync.set({ blackListItem: items })
 chrome.runtime.onInstalled.addListener(function () {
   chrome.storage.sync.set({ color: '#3aa757' }, function () {
