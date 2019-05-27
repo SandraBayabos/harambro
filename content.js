@@ -40,8 +40,9 @@ chrome.storage.local.get('enabled', data => {
 
               links[i].onclick = function () {
                 $.ajax({
-                  method: 'post',
-                  url: 'api/v1/add_entry',
+                  method: 'POST',
+                  dataType: 'JSON',
+                  url: 'http://localhost:5000/api/v1/add_entry',
                   header: {
                     'Authorization': chrome.storage.jwt
                   },
