@@ -2,16 +2,14 @@ chrome.storage.local.get('enabled', data => {
   chrome.storage.sync.get(['blackListItem'], function (result) {
   console.log(result.blackListItem)
   let badWords = result.blackListItem
-  if (data.enabled) {
-    document.getElementsByTagName('html')[0].style.display = 'none'
-
-    window.onload = function () {
+  
+  function work() {
       console.log("Chrome Extension Go!")
       let links = document.body.querySelectorAll('a')
 
       for (let i = 0; i < links.length; i++) {
         for (let j = 0; j < badWords.length; j++) {
-          if (links[i].href.toLowerCase().includes(badWords[j])||links[i].innerText.toLowerCase().includes(badWords[j])||links[i].title.toLowerCase().includes(badWords[j])) {
+          if (links[i].href.toLowerCase().includes(badWords[j])||links[i].text.toLowerCase().includes(badWords[j])||links[i].title.toLowerCase().includes(badWords[j])||links[i].text.toLowerCase().includes(badWords[j])) {
             links[i].style.color = "lightgray";
             links[i].addEventListener('click', function (e) { e.preventDefault(); })
             links[i].onclick = function () {
@@ -52,8 +50,11 @@ chrome.storage.local.get('enabled', data => {
           }
         }
       }
-      document.getElementsByTagName('html')[0].style.display = 'inline'
+      document.getElementsByTagName('html')[0].removeAttribute("style")
     }
+  if (data.enabled) {
+    document.getElementsByTagName('html')[0].style.opacity = 0
+    window.addEventListener('load', work )
   }
 }
     else {
