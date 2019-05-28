@@ -1,7 +1,12 @@
-let title = document.createElement("div")
+let header = document.querySelector('header')
+let title = document.createElement("span")
 title.innerHTML = "Harambro"
+header.appendChild(title)
+let div1 = document.createElement("span")
+div1.setAttribute("class", "container");
+div1.innerHTML ='<label class="switch"><input id="toggle" type="checkbox"><span class="slider round"></span>'
+header.appendChild(div1)
 
-let toggle = document.createElement('input');
 
 let button = document.createElement('button')
 var image = document.createElement('IMG')
@@ -9,7 +14,7 @@ image.setAttribute('src', 'images/setting(1).png')
 button.appendChild(image)
 
 
-let header = document.querySelector('header')
+
 
 let email = document.createElement("label")
 email.innerHTML = "Email     :"
@@ -71,7 +76,7 @@ form.onsubmit = function (e) {
 
 // header.appendChild(button)
 header.appendChild(button)
-header.appendChild(title)
+// header.appendChild(title)
 form.appendChild(email)
 form.appendChild(input);
 form.appendChild(password);
@@ -106,6 +111,8 @@ document.querySelector('.go-to-options').addEventListener('click', function () {
     window.open(chrome.runtime.getURL('options.html'));
   }
 });
+
+
 
 
 var enabled = true;
