@@ -13,11 +13,13 @@ let button = document.createElement('button')
 var image = document.createElement('IMG')
 image.setAttribute('src', 'images/setting(1).png')
 button.appendChild(image)
+header.appendChild(button)
 
 let button1 = document.createElement('button')
 var lock = document.createElement('IMG')
 lock.setAttribute('src', 'images/lock.jpg')
-lock.setAttribute('class', 'lock')
+lock.setAttribute('class', 'locker')
+header.appendChild(button1)
 
 let clickState = 0
 button1.onclick = function (e) {
@@ -37,23 +39,29 @@ button1.onclick = function (e) {
 button1.appendChild(lock)
 
 //login form
-let email = document.createElement("label")
-email.innerHTML = "Email     :"
-
 //Create login form in popup for use on first time
 
 let form = document.createElement("form");
 form.setAttribute('method', "post");
+form.setAttribute('action', "submit.php");
+
+let email = document.createElement("label")
+email.innerHTML = "Email     :"
+form.appendChild(email)
+
 let input = document.createElement("input"); //input element, text
 input.setAttribute('type', "text");
 input.setAttribute('name', "email");
+form.appendChild(input);
 
 let password = document.createElement("label")
 password.innerHTML = "Password:"
+form.appendChild(password);
 
 let input1 = document.createElement("input"); //input element, text
 input1.setAttribute('type', "password");
 input1.setAttribute('name', "password");
+form.appendChild(input1);
 
 let submit = document.createElement("input"); //input element, Submit button
 submit.setAttribute('type', "submit");
@@ -109,12 +117,6 @@ document.getElementsByTagName('body')[0].appendChild(form);
 
 let body = document.querySelector('body')
 title.style.fontSize = "28px"
-body.style.width = "300px"
-body.style.margin = "15px"
-body.style.display = 'flex'
-body.style.justifyContent = 'center'
-body.style.flexDirection = 'column'
-body.classList.add('container')
 button.classList.add('setting')
 header.style.alignItems = 'left'
 button.classList.add('go-to-options')
