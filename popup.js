@@ -1,13 +1,3 @@
-// let blurWord = document.getElementById('blurWord');
-
-// blurWord.onclick = function myFunction() {
-//   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-//     chrome.tabs.executeScript(
-//       tabs[0].id,
-//       { file: 'blurfunction.js' }
-//     )
-//   })
-// }
 let title = document.createElement("div")
 title.innerHTML = "Harambro"
 
@@ -25,9 +15,9 @@ let email = document.createElement("label")
 email.innerHTML = "Email     :"
 
 //Create login form in popup for use on first time
+
 let form = document.createElement("form");
 form.setAttribute('method', "post");
-form.setAttribute('action', "submit.php");
 let input = document.createElement("input"); //input element, text
 input.setAttribute('type', "text");
 input.setAttribute('name', "email");
@@ -35,14 +25,49 @@ input.setAttribute('name', "email");
 let password = document.createElement("label")
 password.innerHTML = "Password:"
 
-
 let input1 = document.createElement("input"); //input element, text
-input1.setAttribute('type', "text");
+input1.setAttribute('type', "password");
 input1.setAttribute('name', "password");
 
 let submit = document.createElement("input"); //input element, Submit button
 submit.setAttribute('type', "submit");
 submit.setAttribute('value', "Submit");
+
+//make api call
+form.onsubmit = function (e) {
+  e.preventDefault()
+  console.log(input.value, input1.value)
+  $.ajax({
+    type: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "*/*",
+    },
+    url: 'http://localhost:5000/api/v1/sessions/login',
+    data: JSON.stringify({
+      email: input.value,
+      password: input1.value
+    }),
+    success: function (data) {
+      console.log(data)
+      console.log(data.auth_token)
+      auth_token = data.auth_token
+      //saving to chrome storage
+      chrome.storage.sync.set({ jwt: auth_token }), function () {
+        console.log(`Value is set to ${auth_token}`)
+      }
+      chrome.storage.sync.get(['jwt'], function (result) {
+        console.log(`Value currently is ${result.jwt}`)
+      })
+
+    },
+    error: function (response) {
+      console.log(response)
+    }
+
+  })
+}
+
 
 // header.appendChild(button)
 header.appendChild(button)
