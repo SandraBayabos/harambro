@@ -5,7 +5,7 @@ title.innerHTML = "Harambro"
 header.appendChild(title)
 let div1 = document.createElement("span")
 div1.setAttribute("class", "container");
-div1.innerHTML ='<label class="switch"><input id="toggle" type="checkbox"><span class="slider round"></span>'
+div1.innerHTML = '<label class="switch"><input id="toggle" type="checkbox"><span class="slider round"></span>'
 header.appendChild(div1)
 
 
@@ -66,6 +66,7 @@ form.appendChild(input1);
 let submit = document.createElement("input"); //input element, Submit button
 submit.setAttribute('type', "submit");
 submit.setAttribute('value', "Submit");
+form.appendChild(submit);
 
 //make api call
 form.onsubmit = function (e) {
@@ -102,21 +103,12 @@ form.onsubmit = function (e) {
   })
 }
 
-
-// header.appendChild(button)
-header.appendChild(button)
-header.appendChild(button1)
-// header.appendChild(title)
-form.appendChild(email)
-form.appendChild(input);
-form.appendChild(password);
-form.appendChild(input1);
-form.appendChild(submit);
-
 document.getElementsByTagName('body')[0].appendChild(form);
 
 let body = document.querySelector('body')
 title.style.fontSize = "28px"
+body.style.width = "280px"
+body.style.margin = "15px"
 button.classList.add('setting')
 header.style.alignItems = 'left'
 button.classList.add('go-to-options')
@@ -131,6 +123,8 @@ image.style.width = '25px'
 image.style.height = '25px'
 lock.style.width = '25px'
 lock.style.height = '25px'
+button1.style.border = 'none'
+button1.style.background = 'transparent'
 
 document.querySelector('.go-to-options').addEventListener('click', function () {
   if (chrome.runtime.openOptionsPage) {
@@ -139,9 +133,6 @@ document.querySelector('.go-to-options').addEventListener('click', function () {
     window.open(chrome.runtime.getURL('options.html'));
   }
 });
-
-
-
 
 var enabled = true;
 var myButton = document.getElementById('toggle');
