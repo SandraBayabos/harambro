@@ -66,12 +66,16 @@
   font-size: 16px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
 }
-
-  /* Darker background on mouse-over */
-  {% comment %} .btn:hover {
-  background-color: RoyalBlue; {% endcomment %}
+#locker {
+    height: 30px;
+    width: 30px;
+    border: none;
+    padding:0;
+    background: transparent;
 }
-
+.button-image{
+  width: 25px;
+  height: 25px;
 }
   </style>
   
@@ -95,19 +99,14 @@
     <input type="submit" value="Login"/>
 </form>-->
 
-
   <header>
-    <div class="container">
-      
-      <label class="switch">
-        <input id="toggle" type="checkbox">
-        <span class="slider round"></span>
-    </div>
+
     <!-- <i class="fas fa-lock">Locked</i>
     <i class="fas fa-lock-open">Unlocked</i> -->
-    <div>
+    <!-- <div>
       <button class="button-elem btn btn-outline-success">Locked</button>
     </div>
+    <button id="locker"><img class="button-image" src="images/lock.jpg"/></button> -->
   </header>
 
   <script src="popup.js"></script>
