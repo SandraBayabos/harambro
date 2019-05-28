@@ -9,20 +9,21 @@ div1.innerHTML = '<label class="switch"><input id="toggle" type="checkbox"><span
 header.appendChild(div1)
 
 
-let button = document.createElement('button')
+let buttonSetting = document.createElement('button')
 var image = document.createElement('IMG')
 image.setAttribute('src', 'images/setting(1).png')
-button.appendChild(image)
-header.appendChild(button)
+buttonSetting.classList.add('go-to-options')
+buttonSetting.appendChild(image)
+header.appendChild(buttonSetting)
 
-let button1 = document.createElement('button')
+let buttonLocker = document.createElement('button')
 var lock = document.createElement('IMG')
 lock.setAttribute('src', 'images/lock.jpg')
 lock.setAttribute('class', 'locker')
-header.appendChild(button1)
+header.appendChild(buttonLocker)
 
 let clickState = 0
-button1.onclick = function (e) {
+buttonLocker.onclick = function (e) {
   if (clickState == 0) {
     // code snippet 1
     // btn.textContent = 'Unlocked';
@@ -36,7 +37,7 @@ button1.onclick = function (e) {
   }
 }
 
-button1.appendChild(lock)
+buttonLocker.appendChild(lock)
 
 //login form
 //Create login form in popup for use on first time
@@ -109,22 +110,21 @@ let body = document.querySelector('body')
 title.style.fontSize = "28px"
 body.style.width = "280px"
 body.style.margin = "15px"
-button.classList.add('setting')
+// button.classList.add('setting')
 header.style.alignItems = 'left'
-button.classList.add('go-to-options')
-button.style.width = '25px'
-button.style.heigt = "25px"
-button.style.alignItems = 'right'
+buttonSetting.style.width = '25px'
+buttonSetting.style.heigt = "25px"
+buttonSetting.style.alignItems = 'right'
+buttonSetting.style.border = 'none'
+buttonSetting.style.background = 'transparent'
 image.style.width = '25px'
 image.style.height = '25px'
-button.style.border = 'none'
-button.style.background = 'transparent'
 image.style.width = '25px'
 image.style.height = '25px'
 lock.style.width = '25px'
 lock.style.height = '25px'
-button1.style.border = 'none'
-button1.style.background = 'transparent'
+buttonLocker.style.border = 'none'
+buttonLocker.style.background = 'transparent'
 
 document.querySelector('.go-to-options').addEventListener('click', function () {
   if (chrome.runtime.openOptionsPage) {
@@ -145,23 +145,16 @@ chrome.storage.local.get('enabled', data => {
 
 myButton.onclick = () => {
   console.log(enabled, 'click')
-
   enabled = !enabled;
-
-
   chrome.storage.local.set({ enabled: enabled });
-  if (enabled == false) {
-    const password = prompt("Please key in your password");
-    if (password !== '1234') {
-      alert('Please key in a correct password.')
-      chrome.storage.local.set({ enabled: true })
-    }
-  }
-
-
+  // if (enabled == false) {
+  //   const password = prompt("Please key in your password");
+  //   if (password !== '1234') {
+  //     alert('Please key in a correct password.')
+  //     chrome.storage.local.set({ enabled: true })
+  //   }
+  // }
   chrome.tabs.reload()
-
-
 };
 
 
