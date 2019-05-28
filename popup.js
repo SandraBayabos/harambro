@@ -8,19 +8,39 @@
 //     )
 //   })
 // }
+// document.getElementById('container').innerHTML = `
+// <div class="container">
+
+// <label class="switch">
+// <input id="toggle" type="checkbox">
+// <span class="slider round"></span>
+// </div>
+
+// `
+
+
 let title = document.createElement("div")
 title.innerHTML = "Harambro"
-
-let toggle = document.createElement('input');
 
 let button = document.createElement('button')
 var image = document.createElement('IMG')
 image.setAttribute('src', 'images/setting(1).png')
 button.appendChild(image)
 
+let button1 = document.createElement('button')
+var lock = document.createElement('IMG')
+lock.setAttribute('src', 'images/lock.jpg')
+lock.setAttribute('class', 'lock')
+button1.appendChild(lock)
+
+let button2 = document.createElement('button')
+var unlock = document.createElement('IMG')
+unlock.setAttribute('src', 'images/unlock.jpg')
+button2.appendChild(unlock)
+
+
 
 let header = document.querySelector('header')
-
 let email = document.createElement("label")
 email.innerHTML = "Email     :"
 
@@ -46,6 +66,8 @@ submit.setAttribute('value', "Submit");
 
 // header.appendChild(button)
 header.appendChild(button)
+header.appendChild(button1)
+header.appendChild(button2)
 header.appendChild(title)
 form.appendChild(email)
 form.appendChild(input);
@@ -69,10 +91,18 @@ button.classList.add('go-to-options')
 button.style.width = '25px'
 button.style.heigt = "25px"
 button.style.alignItems = 'right'
-image.style.width = '25px'
-image.style.height = '25px'
 button.style.border = 'none'
 button.style.background = 'transparent'
+button1.style.border = 'none'
+button1.style.background = 'transparent'
+button2.style.border = 'none'
+button2.style.background = 'transparent'
+image.style.width = '25px'
+image.style.height = '25px'
+lock.style.width = '25px'
+lock.style.height = '25px'
+unlock.style.width = '25px'
+unlock.style.height = '25px'
 
 document.querySelector('.go-to-options').addEventListener('click', function () {
   if (chrome.runtime.openOptionsPage) {
@@ -112,6 +142,14 @@ myButton.onclick = () => {
 
 
 };
+
+
+
+
+
+
+
+
 
 var clickState = 0;
 var btn = document.querySelector('.button-elem');
