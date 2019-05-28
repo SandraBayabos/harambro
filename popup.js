@@ -1,3 +1,4 @@
+//header with title, toggle button, locker button, option setting button
 let header = document.querySelector('header')
 let title = document.createElement("span")
 title.innerHTML = "Harambro"
@@ -13,9 +14,29 @@ var image = document.createElement('IMG')
 image.setAttribute('src', 'images/setting(1).png')
 button.appendChild(image)
 
+let button1 = document.createElement('button')
+var lock = document.createElement('IMG')
+lock.setAttribute('src', 'images/lock.jpg')
+lock.setAttribute('class', 'lock')
 
+let clickState = 0
+button1.onclick = function (e) {
+  if (clickState == 0) {
+    // code snippet 1
+    // btn.textContent = 'Unlocked';
+    lock.setAttribute('src', 'images/lock.jpg')
+    clickState = 1;
+  } else {
+    // code snippet 2
+    // this.textContent = 'Locked';
+    lock.setAttribute('src', 'images/unlock.jpg')
+    clickState = 0;
+  }
+}
 
+button1.appendChild(lock)
 
+//login form
 let email = document.createElement("label")
 email.innerHTML = "Email     :"
 
@@ -76,6 +97,7 @@ form.onsubmit = function (e) {
 
 // header.appendChild(button)
 header.appendChild(button)
+header.appendChild(button1)
 // header.appendChild(title)
 form.appendChild(email)
 form.appendChild(input);
@@ -103,6 +125,10 @@ image.style.width = '25px'
 image.style.height = '25px'
 button.style.border = 'none'
 button.style.background = 'transparent'
+image.style.width = '25px'
+image.style.height = '25px'
+lock.style.width = '25px'
+lock.style.height = '25px'
 
 document.querySelector('.go-to-options').addEventListener('click', function () {
   if (chrome.runtime.openOptionsPage) {
@@ -145,20 +171,4 @@ myButton.onclick = () => {
 
 };
 
-var clickState = 0;
-var btn = document.querySelector('.button-elem');
-
-btn.addEventListener('click', function () {
-
-  if (clickState == 0) {
-    // code snippet 1
-    this.textContent = 'Unlocked';
-    clickState = 1;
-  } else {
-    // code snippet 2
-    this.textContent = 'Locked';
-    clickState = 0;
-  }
-
-});
 
