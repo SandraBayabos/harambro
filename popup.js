@@ -1,8 +1,12 @@
-//header with title, toggle button, locker button, option setting button
+//header with toggle button, locker button, option setting button
 let header = document.querySelector('header')
-let title = document.createElement("span")
-title.innerHTML = "Harambro"
-header.appendChild(title)
+let nav =document.querySelector('nav')
+let buttonLocker = document.createElement('button')
+var lock = document.createElement('IMG')
+lock.setAttribute('src', 'images/lock.png')
+lock.setAttribute('class', 'locker')
+nav.appendChild(buttonLocker)
+
 let div1 = document.createElement("span")
 div1.setAttribute("class", "container");
 div1.innerHTML = '<label class="switch"><input id="toggle" type="checkbox"><span class="slider round"></span>'
@@ -16,24 +20,22 @@ buttonSetting.classList.add('go-to-options')
 buttonSetting.appendChild(image)
 header.appendChild(buttonSetting)
 
-let buttonLocker = document.createElement('button')
-var lock = document.createElement('IMG')
-lock.setAttribute('src', 'images/lock.jpg')
-lock.setAttribute('class', 'locker')
-header.appendChild(buttonLocker)
-
-let clickState = 0
+header.style.display="none"
+let clickState = 1
 buttonLocker.onclick = function (e) {
   if (clickState == 0) {
     // code snippet 1
     // btn.textContent = 'Unlocked';
-    lock.setAttribute('src', 'images/lock.jpg')
+    lock.setAttribute('src', 'images/lock.png')
     clickState = 1;
+    header.style.display="none"
   } else {
     // code snippet 2
     // this.textContent = 'Locked';
-    lock.setAttribute('src', 'images/unlock.jpg')
+    lock.setAttribute('src', 'images/unlock.png')
     clickState = 0;
+    header.removeAttribute('style')
+
   }
 }
 
@@ -107,7 +109,6 @@ form.onsubmit = function (e) {
 document.getElementsByTagName('body')[0].appendChild(form);
 
 let body = document.querySelector('body')
-title.style.fontSize = "28px"
 body.style.width = "280px"
 body.style.margin = "15px"
 // button.classList.add('setting')
