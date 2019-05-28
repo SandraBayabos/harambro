@@ -53,9 +53,9 @@ form.onsubmit = function (e) {
       console.log(data.auth_token)
       auth_token = data.auth_token
       //saving to chrome storage
-      chrome.storage.sync.set({ jwt: auth_token }), function () {
+      chrome.storage.sync.set({ jwt: auth_token }, function () {
         console.log(`Value is set to ${auth_token}`)
-      }
+      })
       chrome.storage.sync.get(['jwt'], function (result) {
         console.log(`Value currently is ${result.jwt}`)
       })
