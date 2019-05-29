@@ -117,8 +117,13 @@ function closeForm() {
 
 //////////////////////LOGIN FORM//////////////////////
 //////////////////////CREATE LOGIN FORM FOR USE ON FIRST TIME//////////////////////
-
+let asideSignIn =document.createElement("aside")
+document.body.appendChild(asideSignIn)
 let form = document.createElement("form");
+asideSignIn.appendChild(form)
+
+
+
 form.setAttribute('class', 'form')
 form.setAttribute('method', "post");
 form.setAttribute('action', "submit.php");
@@ -149,7 +154,7 @@ form.appendChild(submit);
 ///// Upon Loading Popup, check JWT to display form or interface //////
 
 function hideLoginForm() {
-  $("form").hide()
+  document.querySelector("aside").style.display="none"
 }
 
 chrome.storage.sync.get(['jwt'], function (response) {
@@ -209,7 +214,7 @@ form.onsubmit = function (e) {
 
 
 
-document.getElementsByTagName('body')[0].appendChild(form);
+// document.getElementsByTagName('body')[0].appendChild(form);
 
 let body = document.querySelector('body')
 body.style.width = "200px"
@@ -251,13 +256,6 @@ myButton.onclick = () => {
   console.log(enabled, 'click')
   enabled = !enabled;
   chrome.storage.local.set({ enabled: enabled });
-  // if (enabled == false) {
-  //   const password = prompt("Please key in your password");
-  //   if (password !== '1234') {
-  //     alert('Please key in a correct password.')
-  //     chrome.storage.local.set({ enabled: true })
-  //   }
-  // }
   chrome.tabs.reload()
 };
 
