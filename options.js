@@ -39,7 +39,7 @@ function getItems() {
     if (!result.blackListItem) {
       return
     }
-    for (let i = result.blackListItem.length-1; i>=0 ; i--) {
+    for (let i = result.blackListItem.length - 1; i >= 0; i--) {
       const keyword = result.blackListItem[i]
       let t = document.createTextNode(keyword)
       let li = document.createElement("li")
@@ -84,11 +84,11 @@ addItem.onclick = (newElement) => {
   var inputValue = document.getElementById("myInput").value;
   if (inputValue === '') {
     alert('Please insert a word to blacklist.')
-  } 
-  else if(/[ 0-9#$%=@!{},`~&*()'<>?.:;_|^/+\t\r\n\[\]"-]/.test( inputValue ) ) {
+  }
+  else if (/[ 0-9#$%=@!{},`~&*()'<>?.:;_|^/+\t\r\n\[\]"-]/.test(inputValue)) {
     alert('Number and symbol is not allowed.');
   }
-  else if(inputValue.length<3){
+  else if (inputValue.length < 3) {
     alert('Your word is too common/short.')
   }
   else {
@@ -115,3 +115,8 @@ getItems()
 function openWin() {
   window.open("localhost:5000");
 }
+
+$('#logout-btn').on('click', function () {
+  chrome.storage.sync.set({ jwt: null })
+  $('#logout-btn-container').html('You are now logged out!')
+})

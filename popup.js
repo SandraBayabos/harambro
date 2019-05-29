@@ -27,54 +27,59 @@ nav.style.display = 'none'
 let clickState = 1
 buttonLocker.onclick = function (e) {
   if (clickState == 0) {
-    // code snippet 1
-    // btn.textContent = 'Unlocked';
     lock.setAttribute('src', 'images/lock.png')
     clickState = 1;
-    header.style.display = "none"
+    header.style.display = "none";
+    document.querySelector("section").style.display = "none";
   } else {
-    // code snippet 2
-    // this.textContent = 'Locked';
-    const inputPassword = prompt('Enter password')
-    inputPassword.inputType = 'password'
+    // const inputPassword = prompt('Enter password')
+    // inputPassword.inputType = 'password'
     // if (inputPassword !== '1234') {
     //   alert('Please enter correct password')
     //   console.log(inputPassword)
-    //   clickState = 1
+    // clickState = 1
 
     //////////////////////TO UNLOCK ENTER PASSWORD & MAKE API CALL TO VERIFY PASSWORD//////////////////////
-    inputPassword.onsubmit = function () {
-      $.ajax({
-        method: 'POST',
-        dataType: 'JSON',
-        url: 'http://localhost:5000/api/v1/sessions/checkpassword',
-        header: {
-          'Authorization':
-            chrome.storage.sync.get(['jwt'], function (result) { console.log(`Value currently is ${result.jwt}`) })
-        },
-        data: {
-          password: inputPassword
-        },
-        success: function (response) {
-          if (response.status == 'OK') {
-            // render the on button and the settings page
-            lock.setAttribute('src', 'images/unlock.png')
-            clickState = 0;
-            header.removeAttribute('style')
+    // inputPassword.onsubmit = function () {
+    //   $.ajax({
+    //     method: 'POST',
+    //     dataType: 'JSON',
+    //     url: 'http://localhost:5000/api/v1/sessions/checkpassword',
+    //     header: {
+    //       'Authorization':
+    //         chrome.storage.sync.get(['jwt'], function (result) { console.log(`Value currently is ${result.jwt}`) })
+    //     },
+    //     data: {
+    //       password: inputPassword
+    //     },
+    //     success: function (response) {
+    //       if (response.status == 'OK') {
+    //         // render the on button and the settings page
+    lock.setAttribute('src', 'images/unlock.png')
+    clickState = 0;
+    header.removeAttribute('style')
 
-            // clickState = 1
-          }
-        },
-        error: function (response) {
-          alert('wrong password')
-        }
-      })
-    }
+    document.querySelector("section").removeAttribute('style')
+    //         // clickState = 1
+    //       }
+    //     },
+    //     error: function (response) {
+    //       alert('wrong password')
+    //     }
+    //   })
+    // }
 
   }
 }
 buttonLocker.appendChild(lock)
 
+let passwordForm = document.createElement("section")
+passwordForm.innerHTML = '<br/><div class="form-popup" id="myForm"><form action="/action_page.php" class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" placeholder="Password" name="psw" required><div><br/><button type="submit" class="btn btn-primary btn-sm">OK</button>\n<button type="submit" class="btn btn-light btn-sm" onclick="closeForm()">Close</button></form></div></div>'
+document.body.appendChild(passwordForm)
+document.querySelector("section").style.display = "none";
+function closeForm() {
+  document.querySelector("section").style.display = "none";
+}
 //////////////////////ON CLICK UNLOCK PROMPT PASSWORD//////////////////////
 
 
@@ -141,6 +146,25 @@ submit.setAttribute('type', "submit");
 submit.setAttribute('value', "Submit");
 form.appendChild(submit);
 
+///// Upon Loading Popup, check JWT to display form or interface //////
+
+function hideLoginForm() {
+  $("form").hide()
+}
+
+chrome.storage.sync.get(['jwt'], function (response) {
+  if (response.jwt) {
+
+    hideLoginForm()
+    header.removeAttribute('style')
+    nav.removeAttribute('style')
+  }
+})
+
+
+
+
+
 //////////////////////MAKE API CALL TO VERIFY EMAIL & PASSWORD//////////////////////
 
 form.onsubmit = function (e) {
@@ -169,10 +193,7 @@ form.onsubmit = function (e) {
         console.log(`Value currently is ${result.jwt}`)
       })
 
-      function display() {
-        $("form").hide()
-      }
-      display()
+      hideLoginForm()
       header.removeAttribute('style')
       nav.removeAttribute('style')
 
