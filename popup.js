@@ -21,6 +21,8 @@ buttonSetting.appendChild(image)
 header.appendChild(buttonSetting)
 
 header.style.display = "none"
+nav.style.display = 'none'
+// form.style.display = "none"
 //////////////////////LOCK & UNLOCK BUTTON//////////////////////
 let clickState = 1
 buttonLocker.onclick = function (e) {
@@ -59,6 +61,7 @@ buttonLocker.onclick = function (e) {
             lock.setAttribute('src', 'images/unlock.png')
             clickState = 0;
             header.removeAttribute('style')
+
             // clickState = 1
           }
         },
@@ -111,6 +114,7 @@ buttonLocker.appendChild(lock)
 //////////////////////CREATE LOGIN FORM FOR USE ON FIRST TIME//////////////////////
 
 let form = document.createElement("form");
+form.setAttribute('class', 'form')
 form.setAttribute('method', "post");
 form.setAttribute('action', "submit.php");
 
@@ -165,18 +169,29 @@ form.onsubmit = function (e) {
         console.log(`Value currently is ${result.jwt}`)
       })
 
+      function display() {
+        $("form").hide()
+      }
+      display()
+      header.removeAttribute('style')
+      nav.removeAttribute('style')
+
     },
     error: function (response) {
       console.log(response)
+      alert('Please enter a correct email and password.')
     }
 
   })
 }
 
+
+
+
 document.getElementsByTagName('body')[0].appendChild(form);
 
 let body = document.querySelector('body')
-body.style.width = "280px"
+body.style.width = "200px"
 body.style.margin = "15px"
 // button.classList.add('setting')
 header.style.alignItems = 'left'
