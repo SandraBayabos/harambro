@@ -174,7 +174,7 @@ let logo = document.createElement('IMG')
 logo.setAttribute('src', 'images/heli_logo.png')
 logo.setAttribute('width', '180')
 logo.setAttribute('height', '40')
-document.body.appendChild(logo)
+document.getElementById('logo').appendChild(logo)
 
 let email = document.createElement("label")
 email.innerHTML = "Email     :"
