@@ -1,6 +1,6 @@
 //header with toggle button, locker button, option setting button
 let header = document.querySelector('header')
-let nav =document.querySelector('nav')
+let nav = document.querySelector('nav')
 let buttonLocker = document.createElement('button')
 var lock = document.createElement('IMG')
 lock.setAttribute('src', 'images/lock.png')
@@ -20,7 +20,8 @@ buttonSetting.classList.add('go-to-options')
 buttonSetting.appendChild(image)
 header.appendChild(buttonSetting)
 
-header.style.display="none"
+header.style.display = "none"
+//////////////////////LOCK & UNLOCK BUTTON//////////////////////
 let clickState = 1
 buttonLocker.onclick = function (e) {
   if (clickState == 0) {
@@ -28,21 +29,86 @@ buttonLocker.onclick = function (e) {
     // btn.textContent = 'Unlocked';
     lock.setAttribute('src', 'images/lock.png')
     clickState = 1;
-    header.style.display="none"
+    header.style.display = "none"
   } else {
     // code snippet 2
     // this.textContent = 'Locked';
-    lock.setAttribute('src', 'images/unlock.png')
-    clickState = 0;
-    header.removeAttribute('style')
+    const inputPassword = prompt('Enter password')
+    inputPassword.inputType = 'password'
+    // if (inputPassword !== '1234') {
+    //   alert('Please enter correct password')
+    //   console.log(inputPassword)
+    //   clickState = 1
+
+    //////////////////////TO UNLOCK ENTER PASSWORD & MAKE API CALL TO VERIFY PASSWORD//////////////////////
+    inputPassword.onsubmit = function () {
+      $.ajax({
+        method: 'POST',
+        dataType: 'JSON',
+        url: 'http://localhost:5000/api/v1/sessions/checkpassword',
+        header: {
+          'Authorization':
+            chrome.storage.sync.get(['jwt'], function (result) { console.log(`Value currently is ${result.jwt}`) })
+        },
+        data: {
+          password: inputPassword
+        },
+        success: function (response) {
+          if (response.status == 'OK') {
+            // render the on button and the settings page
+            lock.setAttribute('src', 'images/unlock.png')
+            clickState = 0;
+            header.removeAttribute('style')
+            // clickState = 1
+          }
+        },
+        error: function (response) {
+          alert('wrong password')
+        }
+      })
+    }
 
   }
 }
-
 buttonLocker.appendChild(lock)
 
-//login form
-//Create login form in popup for use on first time
+//////////////////////ON CLICK UNLOCK PROMPT PASSWORD//////////////////////
+
+
+// //////////////////////TO LOCK BACK AGAIN//////////////////////
+
+// lock.onclick = function () {
+//   $.ajax({
+//     method: 'POST',
+//     dataType: 'JSON',
+//     url: 'http://localhost:5000/api/v1/sessions/checkpassword',
+//     header: {
+//       'Authorization':
+//         chrome.storage.sync.get(
+//           ['jwt'], function (result) {
+//             console.log(`auth_token is ${result.jwt}`)
+//           })
+//     },
+//     data: {
+//       password: input_password
+//     },
+//     success: function (response) {
+//       if (response.status == 'OK') {
+//         document.getElementById('container').innerHTML('')
+//         // add an unlock button
+//         document.getElementById('container').appendChild(unlockbutton)
+
+//       }
+//     },
+//     error: function (response) {
+//       alert('wrong password')
+//     }
+//   })
+// }
+
+
+//////////////////////LOGIN FORM//////////////////////
+//////////////////////CREATE LOGIN FORM FOR USE ON FIRST TIME//////////////////////
 
 let form = document.createElement("form");
 form.setAttribute('method', "post");
@@ -71,7 +137,8 @@ submit.setAttribute('type', "submit");
 submit.setAttribute('value', "Submit");
 form.appendChild(submit);
 
-//make api call
+//////////////////////MAKE API CALL TO VERIFY EMAIL & PASSWORD//////////////////////
+
 form.onsubmit = function (e) {
   e.preventDefault()
   console.log(input.value, input1.value)
@@ -90,7 +157,7 @@ form.onsubmit = function (e) {
       console.log(data)
       console.log(data.auth_token)
       auth_token = data.auth_token
-      //saving to chrome storage
+      //////////////////////SAVE JWT TO CHROME STORAGE//////////////////////
       chrome.storage.sync.set({ jwt: auth_token }, function () {
         console.log(`Value is set to ${auth_token}`)
       })
@@ -157,5 +224,7 @@ myButton.onclick = () => {
   // }
   chrome.tabs.reload()
 };
+
+
 
 
