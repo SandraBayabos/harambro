@@ -93,11 +93,11 @@ function hidePasswordForm() {
 }
 
 let passwordInputField = document.getElementById('pwform')
-const passwordInput = passwordInputField.value
 
 passwordForm.onsubmit = function (e) {
   e.preventDefault();
-  console.log(passwordInputField.value)
+  const passwordInput = passwordInputField.value
+  console.log(passwordInput)
   $.ajax({
     method: 'POST',
     dataType: 'JSON',
@@ -110,7 +110,7 @@ passwordForm.onsubmit = function (e) {
       password: passwordInput
     }),
     success: function (response) {
-      if (response.status == 'OK') {
+      if (response.status == 'success') {
         console.log(response.status)
 
         hidePasswordForm()
