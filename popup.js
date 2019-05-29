@@ -1,3 +1,9 @@
+let JWT
+
+chrome.storage.sync.get(['jwt'], function (result) {
+  JWT = result.jwt
+})
+
 //header with toggle button, locker button, option setting button
 let header = document.querySelector('header')
 let nav = document.querySelector('nav')
@@ -74,7 +80,7 @@ buttonLocker.onclick = function (e) {
 buttonLocker.appendChild(lock)
 
 let passwordForm = document.createElement("section")
-passwordForm.innerHTML = '<br/><div class="form-popup" id="myForm"><form action="/action_page.php" class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" placeholder="Password" name="psw" required><div><br/><button type="submit" class="btn btn-primary btn-sm">OK</button>\n<button type="submit" class="btn btn-light btn-sm" onclick="closeForm()">Close</button></form></div></div>'
+passwordForm.innerHTML = '<br/><div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" name="psw" required><div><br/><button type="submit" class="btn btn-primary btn-sm">OK</button>\n<button type="submit" class="btn btn-light btn-sm" onclick="closeForm()">Close</button></form></div></div>'
 document.body.appendChild(passwordForm)
 document.querySelector("section").style.display = "none";
 function closeForm() {
@@ -82,6 +88,41 @@ function closeForm() {
 }
 //////////////////////ON CLICK UNLOCK PROMPT PASSWORD//////////////////////
 
+function hidePasswordForm() {
+  passwordForm.style.display = "none"
+}
+
+let passwordInputField = document.getElementById('pwform')
+const passwordInput = passwordInputField.value
+
+passwordForm.onsubmit = function (e) {
+  e.preventDefault();
+  console.log(passwordInputField.value)
+  $.ajax({
+    method: 'POST',
+    dataType: 'JSON',
+    contentType: "application/json",
+    url: 'http://localhost:5000/api/v1/sessions/checkpassword',
+    headers: {
+      'Authorization': 'Bearer ' + JWT
+    },
+    data: JSON.stringify({
+      password: passwordInput
+    }),
+    success: function (response) {
+      if (response.status == 'OK') {
+        console.log(response.status)
+
+        hidePasswordForm()
+
+      }
+    },
+    error: function (error) {
+      console.log(error)
+      alert('Wrong password, please try again.')
+    }
+  })
+}
 
 // //////////////////////TO LOCK BACK AGAIN//////////////////////
 
@@ -117,7 +158,7 @@ function closeForm() {
 
 //////////////////////LOGIN FORM//////////////////////
 //////////////////////CREATE LOGIN FORM FOR USE ON FIRST TIME//////////////////////
-let asideSignIn =document.createElement("aside")
+let asideSignIn = document.createElement("aside")
 document.body.appendChild(asideSignIn)
 let form = document.createElement("form");
 asideSignIn.appendChild(form)
@@ -154,7 +195,7 @@ form.appendChild(submit);
 ///// Upon Loading Popup, check JWT to display form or interface //////
 
 function hideLoginForm() {
-  document.querySelector("aside").style.display="none"
+  document.querySelector("aside").style.display = "none"
 }
 
 chrome.storage.sync.get(['jwt'], function (response) {
@@ -165,9 +206,6 @@ chrome.storage.sync.get(['jwt'], function (response) {
     nav.removeAttribute('style')
   }
 })
-
-
-
 
 
 //////////////////////MAKE API CALL TO VERIFY EMAIL & PASSWORD//////////////////////
@@ -210,9 +248,6 @@ form.onsubmit = function (e) {
 
   })
 }
-
-
-
 
 // document.getElementsByTagName('body')[0].appendChild(form);
 
