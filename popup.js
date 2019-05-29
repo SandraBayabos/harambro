@@ -5,6 +5,7 @@ chrome.storage.sync.get(['jwt'], function (result) {
 })
 
 //header with toggle button, locker button, option setting button
+
 let header = document.querySelector('header')
 let nav = document.querySelector('nav')
 let buttonLocker = document.createElement('button')
@@ -169,6 +170,12 @@ form.setAttribute('class', 'form')
 form.setAttribute('method', "post");
 form.setAttribute('action', "submit.php");
 
+let logo = document.createElement('IMG')
+logo.setAttribute('src', 'images/heli_logo.png')
+logo.setAttribute('width', '180')
+logo.setAttribute('height', '40')
+document.body.appendChild(logo)
+
 let email = document.createElement("label")
 email.innerHTML = "Email     :"
 form.appendChild(email)
@@ -176,6 +183,7 @@ form.appendChild(email)
 let input = document.createElement("input"); //input element, text
 input.setAttribute('type', "text");
 input.setAttribute('name', "email");
+input.setAttribute('class', 'form-control')
 form.appendChild(input);
 
 let password = document.createElement("label")
@@ -185,11 +193,13 @@ form.appendChild(password);
 let input1 = document.createElement("input"); //input element, text
 input1.setAttribute('type', "password");
 input1.setAttribute('name', "password");
+input1.setAttribute('class', 'form-control')
 form.appendChild(input1);
 
 let submit = document.createElement("input"); //input element, Submit button
 submit.setAttribute('type', "submit");
 submit.setAttribute('value', "Submit");
+submit.setAttribute('class', 'btn btn-primary btn-sm')
 form.appendChild(submit);
 
 ///// Upon Loading Popup, check JWT to display form or interface //////
