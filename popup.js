@@ -75,33 +75,35 @@ let passwordInputField = document.getElementById('pwform')
 
 passwordForm.onsubmit = function (e) {
   e.preventDefault();
-  const passwordInput = passwordInputField.value
-  console.log(passwordInput)
-  $.ajax({
-    method: 'POST',
-    dataType: 'JSON',
-    contentType: "application/json",
-    url: 'https://helikopter.herokuapp.com/api/v1/sessions/checkpassword',
-    headers: {
-      'Authorization': 'Bearer ' + JWT
-    },
-    data: JSON.stringify({
-      password: passwordInput
-    }),
-    success: function (response) {
-      if (response.status == 'success') {
-        console.log(response.status)
-        hidePasswordForm()
-        header.removeAttribute('style')
-        lock.setAttribute('src', 'images/unlock.png')
+  chrome.storage.sync.get(['jwt'], function (storage) {
+    const passwordInput = passwordInputField.value
+    console.log(passwordInput)
+    $.ajax({
+      method: 'POST',
+      dataType: 'JSON',
+      contentType: "application/json",
+      url: 'https://helikopter.herokuapp.com/api/v1/sessions/checkpassword',
+      headers: {
+        'Authorization': 'Bearer ' + storage.jwt
+      },
+      data: JSON.stringify({
+        password: passwordInput
+      }),
+      success: function (response) {
+        if (response.status == 'success') {
+          console.log(response.status)
+          hidePasswordForm()
+          header.removeAttribute('style')
+          lock.setAttribute('src', 'images/unlock.png')
 
-        clickState = 0 //lock again when the lock is click
+          clickState = 0 //lock again when the lock is click
+        }
+      },
+      error: function (error) {
+        console.log(error)
+        alert('Wrong password, please try again.')
       }
-    },
-    error: function (error) {
-      console.log(error)
-      alert('Wrong password, please try again.')
-    }
+    })
   })
 }
 
@@ -111,7 +113,7 @@ passwordForm.onsubmit = function (e) {
 //   $.ajax({
 //     method: 'POST',
 //     dataType: 'JSON',
-//     url: 'http://localhost:5000/api/v1/sessions/checkpassword',
+//     url: 'https://helikopter.herokuapp.com/api/v1/sessions/checkpassword',
 //     header: {
 //       'Authorization':
 //         chrome.storage.sync.get(
