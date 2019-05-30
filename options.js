@@ -112,7 +112,8 @@ addItem.onclick = (newElement) => {
 }
 getItems()
 
-function openWin() {
+appButton = document.getElementById('app-btn')
+appButton.onclick = function openWin() {
   window.open("https://helikopter.herokuapp.com");
 }
 
