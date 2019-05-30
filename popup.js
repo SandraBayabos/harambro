@@ -54,13 +54,16 @@ buttonLocker.onclick = function (e) {
 buttonLocker.appendChild(lock)
 
 let passwordForm = document.createElement("section")
-passwordForm.innerHTML = '<br/><div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" name="psw" required><div><br/><button type="submit" class="btn btn-primary btn-sm">OK</button>\n<button type="reset" id="closebutton" class="btn btn-light btn-sm">Close</button></form></div></div>'
+passwordForm.innerHTML = '<div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" class="form-control" name="psw" required><button type="submit" class="btn btn-primary btn-sm ">Ok</button><button id="closebutton" type="button" class="btn btn-light btn-sm">Close</button></form>'
 document.body.appendChild(passwordForm)
 document.querySelector("section").style.display = "none";
 let closebutton=document.getElementById('closebutton')
 closebutton.onclick= function () {
   document.querySelector("section").style.display = "none";
-  clickState=1
+
+  clickState = 0
+
+
 }
 //////////////////////ON CLICK UNLOCK PROMPT PASSWORD//////////////////////
 
