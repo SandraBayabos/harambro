@@ -53,10 +53,10 @@ let passwordForm = document.createElement("section")
 passwordForm.innerHTML = '<br/><div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" name="psw" required><div><br/><button type="submit" class="btn btn-primary btn-sm">OK</button>\n<button type="reset" id="closebutton" class="btn btn-light btn-sm">Close</button></form></div></div>'
 document.body.appendChild(passwordForm)
 document.querySelector("section").style.display = "none";
-let closebutton=document.getElementById('closebutton')
-closebutton.onclick= function () {
+let closebutton = document.getElementById('closebutton')
+closebutton.onclick = function () {
   document.querySelector("section").style.display = "none";
-  clickState=0
+  clickState = 0
 }
 //////////////////////ON CLICK UNLOCK PROMPT PASSWORD//////////////////////
 
@@ -232,7 +232,7 @@ form.onsubmit = function (e) {
 
 let body = document.querySelector('body')
 body.style.width = "230px"
-body.style.margin = "0px"
+body.style.margin = "8px"
 // button.classList.add('setting')
 header.style.alignItems = 'left'
 buttonSetting.style.width = '25px'
