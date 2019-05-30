@@ -1,0 +1,29 @@
+.options-body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.btn{
+  color: #b32221;
+  animation: wiggle 10s infinite;
+}
+
+@keyframes wiggle {
+	0% {-webkit-transform: rotate(0deg);}
+	2% {-webkit-transform: rotate(-8deg);}
+	3.5% {-webkit-transform: rotate(8deg);}
+	5% {-webkit-transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(0deg);}
+}
+
+.helikopter-logo{
+  animation: wiggle 5s infinite;
+}
+
+.bg-pic {
+  position: fixed;
+  bottom: -50px;
+  right: 0;
+  width: 35vw;
+  animation: wiggle 10s infinite;
+}
+
