@@ -31,24 +31,24 @@ header.style.display = "none"
 nav.style.display = 'none'
 // form.style.display = "none"
 //////////////////////LOCK & UNLOCK BUTTON//////////////////////
-  let clickState = 1
+let clickState = 1
 buttonLocker.onclick = function (e) {
   if (clickState == 0) {
     //lock
     lock.setAttribute('src', 'images/lock.png')
     header.style.display = "none";
-    clickState=1
+    clickState = 1
     document.querySelector(".form-container").reset();
-  } else if(clickState == 1) { 
+  } else if (clickState == 1) {
     //lock with password form
     lock.setAttribute('src', 'images/lock.png')
     document.querySelector("section").removeAttribute('style')
   }
-  else{
-//unlock
+  else {
+    //unlock
     lock.setAttribute('src', 'images/unlock.png')
-    
-    clickState=0 //when click,back to lock
+
+    clickState = 0 //when click,back to lock
   }
 }
 buttonLocker.appendChild(lock)
@@ -57,8 +57,8 @@ let passwordForm = document.createElement("section")
 passwordForm.innerHTML = '<div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" class="form-control" name="psw" required><button type="submit" class="btn btn-primary btn-sm ">Ok</button><button id="closebutton" type="button" class="btn btn-light btn-sm">Close</button></form>'
 document.body.appendChild(passwordForm)
 document.querySelector("section").style.display = "none";
-let closebutton=document.getElementById('closebutton')
-closebutton.onclick= function () {
+let closebutton = document.getElementById('closebutton')
+closebutton.onclick = function () {
   document.querySelector("section").style.display = "none";
 
   clickState = 0
@@ -95,7 +95,7 @@ passwordForm.onsubmit = function (e) {
         header.removeAttribute('style')
         lock.setAttribute('src', 'images/unlock.png')
 
-        clickState=0 //lock again when the lock is click
+        clickState = 0 //lock again when the lock is click
       }
     },
     error: function (error) {
@@ -226,7 +226,7 @@ form.onsubmit = function (e) {
 
       hideLoginForm()
       nav.removeAttribute('style')
-      clickState=1
+      clickState = 1
     },
     error: function (response) {
       console.log(response)
@@ -240,7 +240,7 @@ form.onsubmit = function (e) {
 // document.getElementsByTagName('body')[0].appendChild(form);
 
 let body = document.querySelector('body')
-body.style.width = "200px"
+body.style.width = "230px"
 body.style.margin = "15px"
 // button.classList.add('setting')
 header.style.alignItems = 'left'
