@@ -31,61 +31,32 @@ header.style.display = "none"
 nav.style.display = 'none'
 // form.style.display = "none"
 //////////////////////LOCK & UNLOCK BUTTON//////////////////////
-let clickState = 1
+let clickState = 0
 buttonLocker.onclick = function (e) {
   if (clickState == 0) {
+    //lock
     lock.setAttribute('src', 'images/lock.png')
-    clickState = 1;
     header.style.display = "none";
-    document.querySelector("section").style.display = "none";
+    document.querySelector("section").removeAttribute('style')
+    // clickState = 1;
   } else {
-    // const inputPassword = prompt('Enter password')
-    // inputPassword.inputType = 'password'
-    // if (inputPassword !== '1234') {
-    //   alert('Please enter correct password')
-    //   console.log(inputPassword)
-    // clickState = 1
-
-    //////////////////////TO UNLOCK ENTER PASSWORD & MAKE API CALL TO VERIFY PASSWORD//////////////////////
-    // inputPassword.onsubmit = function () {
-    //   $.ajax({
-    //     method: 'POST',
-    //     dataType: 'JSON',
-    //     url: 'http://localhost:5000/api/v1/sessions/checkpassword',
-    //     header: {
-    //       'Authorization':
-    //         chrome.storage.sync.get(['jwt'], function (result) { console.log(`Value currently is ${result.jwt}`) })
-    //     },
-    //     data: {
-    //       password: inputPassword
-    //     },
-    //     success: function (response) {
-    //       if (response.status == 'OK') {
-    //         // render the on button and the settings page
+    //unlock
     lock.setAttribute('src', 'images/unlock.png')
     clickState = 0;
-    header.removeAttribute('style')
-
-    document.querySelector("section").removeAttribute('style')
-    //         // clickState = 1
-    //       }
-    //     },
-    //     error: function (response) {
-    //       alert('wrong password')
-    //     }
-    //   })
-    // }
+    // lock.setAttribute('src', 'images/lock.png')
 
   }
 }
 buttonLocker.appendChild(lock)
 
 let passwordForm = document.createElement("section")
-passwordForm.innerHTML = '<br/><div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" name="psw" required><div><br/><button type="submit" class="btn btn-primary btn-sm">OK</button>\n<button type="submit" class="btn btn-light btn-sm" onclick="closeForm()">Close</button></form></div></div>'
+passwordForm.innerHTML = '<br/><div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" name="psw" required><div><br/><button type="submit" class="btn btn-primary btn-sm">OK</button>\n<button type="reset" id="closebutton" class="btn btn-light btn-sm">Close</button></form></div></div>'
 document.body.appendChild(passwordForm)
 document.querySelector("section").style.display = "none";
-function closeForm() {
+let closebutton=document.getElementById('closebutton')
+closebutton.onclick= function () {
   document.querySelector("section").style.display = "none";
+  clickState=0
 }
 //////////////////////ON CLICK UNLOCK PROMPT PASSWORD//////////////////////
 
@@ -113,9 +84,9 @@ passwordForm.onsubmit = function (e) {
     success: function (response) {
       if (response.status == 'success') {
         console.log(response.status)
-
         hidePasswordForm()
-
+        header.removeAttribute('style')
+        lock.setAttribute('src', 'images/unlock.png')
       }
     },
     error: function (error) {
@@ -212,7 +183,6 @@ chrome.storage.sync.get(['jwt'], function (response) {
   if (response.jwt) {
 
     hideLoginForm()
-    header.removeAttribute('style')
     nav.removeAttribute('style')
   }
 })
@@ -247,7 +217,6 @@ form.onsubmit = function (e) {
       })
 
       hideLoginForm()
-      header.removeAttribute('style')
       nav.removeAttribute('style')
 
     },
