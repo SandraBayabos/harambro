@@ -74,7 +74,7 @@ passwordForm.onsubmit = function (e) {
     method: 'POST',
     dataType: 'JSON',
     contentType: "application/json",
-    url: 'http://localhost:5000/api/v1/sessions/checkpassword',
+    url: 'https://helikopter.herokuapp.com/api/v1/sessions/checkpassword',
     headers: {
       'Authorization': 'Bearer ' + JWT
     },
@@ -199,7 +199,7 @@ form.onsubmit = function (e) {
       "Content-Type": "application/json",
       "Accept": "*/*",
     },
-    url: 'http://localhost:5000/api/v1/sessions/login',
+    url: 'https://helikopter.herokuapp.com/api/v1/sessions/login',
     data: JSON.stringify({
       email: input.value,
       password: input1.value
