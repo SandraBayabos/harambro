@@ -29,7 +29,7 @@ chrome.storage.local.get('enabled', data => {
                 method: 'POST',
                 dataType: 'JSON',
                 contentType: "application/json",
-                url: 'http://localhost:5000/api/v1/history/add_entry',
+                url: 'https://helikopter.herokuapp.com/api/v1/history/add_entry',
                 headers: {
                   'Authorization': 'Bearer ' + JWT
                 },

@@ -113,7 +113,7 @@ addItem.onclick = (newElement) => {
 getItems()
 
 function openWin() {
-  window.open("localhost:5000");
+  window.open("https://helikopter.herokuapp.com");
 }
 
 $('#logout-btn').on('click', function () {
