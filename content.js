@@ -74,6 +74,7 @@ chrome.storage.local.get('enabled', data => {
     if (data.enabled) {
       document.getElementsByTagName('html')[0].style.opacity = 0
       window.addEventListener('load', work)
+      window.addEventListener('scroll',work)
     }
 
     else {
