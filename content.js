@@ -64,7 +64,7 @@ chrome.storage.local.get('enabled', data => {
       for (let p = 0; p < images.length; p++) {
         for (let q = 0; q < badWords.length; q++) {
           if (images[p].src.toLowerCase().includes(badWords[q]) || images[p].title.toLowerCase().includes(badWords[q]) || images[p].alt.toLowerCase().includes(badWords[q])) {
-            images[p].style.filter = "blur(10px)";
+            images[p].style.filter = "blur(20px)";
           }
         }
       }
@@ -74,7 +74,7 @@ chrome.storage.local.get('enabled', data => {
     if (data.enabled) {
       document.getElementsByTagName('html')[0].style.opacity = 0
       window.addEventListener('load', work)
-      window.addEventListener('scroll',work)
+      window.addEventListener('scroll', work)
     }
 
     else {
