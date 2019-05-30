@@ -38,6 +38,7 @@ buttonLocker.onclick = function (e) {
     lock.setAttribute('src', 'images/lock.png')
     header.style.display = "none";
     clickState=1
+    document.querySelector(".form-container").reset();
   } else if(clickState == 1) { 
     //lock with password form
     lock.setAttribute('src', 'images/lock.png')
@@ -46,6 +47,7 @@ buttonLocker.onclick = function (e) {
   else{
 //unlock
     lock.setAttribute('src', 'images/unlock.png')
+    
     clickState=0 //when click,back to lock
   }
 }
@@ -276,7 +278,5 @@ myButton.onclick = () => {
   chrome.storage.local.set({ enabled: enabled });
   chrome.tabs.reload()
 };
-
-
 
 
