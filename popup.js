@@ -31,20 +31,24 @@ header.style.display = "none"
 nav.style.display = 'none'
 // form.style.display = "none"
 //////////////////////LOCK & UNLOCK BUTTON//////////////////////
-let clickState = 0
+  let clickState = 1
 buttonLocker.onclick = function (e) {
   if (clickState == 0) {
     //lock
     lock.setAttribute('src', 'images/lock.png')
     header.style.display = "none";
+    clickState=1
+    document.querySelector(".form-container").reset();
+  } else if(clickState == 1) { 
+    //lock with password form
+    lock.setAttribute('src', 'images/lock.png')
     document.querySelector("section").removeAttribute('style')
-    // clickState = 1;
-  } else {
-    //unlock
+  }
+  else{
+//unlock
     lock.setAttribute('src', 'images/unlock.png')
-    clickState = 0;
-    // lock.setAttribute('src', 'images/lock.png')
-
+    
+    clickState=0 //when click,back to lock
   }
 }
 buttonLocker.appendChild(lock)
@@ -53,10 +57,12 @@ let passwordForm = document.createElement("section")
 passwordForm.innerHTML = '<div class="form-popup" id="myForm"><form class="form-container"><label for="psw"><b>Please enter your password</b></label><input type="password" id="pwform" placeholder="Password" class="form-control" name="psw" required><button type="submit" class="btn btn-primary btn-sm ">Ok</button><button id="closebutton" type="button" class="btn btn-light btn-sm">Close</button></form>'
 document.body.appendChild(passwordForm)
 document.querySelector("section").style.display = "none";
-let closebutton = document.getElementById('closebutton')
-closebutton.onclick = function () {
+let closebutton=document.getElementById('closebutton')
+closebutton.onclick= function () {
   document.querySelector("section").style.display = "none";
+
   clickState = 0
+
 
 }
 //////////////////////ON CLICK UNLOCK PROMPT PASSWORD//////////////////////
@@ -75,7 +81,7 @@ passwordForm.onsubmit = function (e) {
     method: 'POST',
     dataType: 'JSON',
     contentType: "application/json",
-    url: 'http://localhost:5000/api/v1/sessions/checkpassword',
+    url: 'https://helikopter.herokuapp.com/api/v1/sessions/checkpassword',
     headers: {
       'Authorization': 'Bearer ' + JWT
     },
@@ -88,6 +94,8 @@ passwordForm.onsubmit = function (e) {
         hidePasswordForm()
         header.removeAttribute('style')
         lock.setAttribute('src', 'images/unlock.png')
+
+        clickState=0 //lock again when the lock is click
       }
     },
     error: function (error) {
@@ -128,7 +136,6 @@ passwordForm.onsubmit = function (e) {
 //   })
 // }
 
-
 //////////////////////LOGIN FORM//////////////////////
 //////////////////////CREATE LOGIN FORM FOR USE ON FIRST TIME//////////////////////
 let asideSignIn = document.createElement("aside")
@@ -144,8 +151,8 @@ form.setAttribute('action', "submit.php");
 
 let logo = document.createElement('IMG')
 logo.setAttribute('src', 'images/heli_logo.png')
-logo.setAttribute('width', '150')
-logo.setAttribute('height', '30')
+logo.setAttribute('width', '180')
+logo.setAttribute('height', '40')
 document.getElementById('logo').appendChild(logo)
 
 let email = document.createElement("label")
@@ -200,7 +207,7 @@ form.onsubmit = function (e) {
       "Content-Type": "application/json",
       "Accept": "*/*",
     },
-    url: 'http://localhost:5000/api/v1/sessions/login',
+    url: 'https://helikopter.herokuapp.com/api/v1/sessions/login',
     data: JSON.stringify({
       email: input.value,
       password: input1.value
@@ -219,7 +226,7 @@ form.onsubmit = function (e) {
 
       hideLoginForm()
       nav.removeAttribute('style')
-
+      clickState=1
     },
     error: function (response) {
       console.log(response)
@@ -229,11 +236,12 @@ form.onsubmit = function (e) {
   })
 }
 
+
 // document.getElementsByTagName('body')[0].appendChild(form);
 
 let body = document.querySelector('body')
-body.style.width = "230px"
-body.style.margin = "8px"
+body.style.width = "200px"
+body.style.margin = "15px"
 // button.classList.add('setting')
 header.style.alignItems = 'left'
 buttonSetting.style.width = '25px'
@@ -273,7 +281,5 @@ myButton.onclick = () => {
   chrome.storage.local.set({ enabled: enabled });
   chrome.tabs.reload()
 };
-
-
 
 
