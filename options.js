@@ -81,6 +81,8 @@ function getItems() {
 let items = []
 addItem.onclick = (newElement) => {
   // var li = document.createElement("li");
+  chrome.storage.sync.get(['blackListItem'], function (result) {
+    items = result.blackListItem
   var inputValue = document.getElementById("myInput").value;
   if (inputValue === '') {
     alert('Please insert a word to blacklist.')
@@ -91,29 +93,29 @@ addItem.onclick = (newElement) => {
   else if (inputValue.length < 3) {
     alert('Your word is too common/short.')
   }
+  else if (items.includes(inputValue)){
+    alert("This word is already in your blacklist.")
+  }
   else {
 
     //to retrieve item from chrome storage
-    chrome.storage.sync.get(['blackListItem'], function (result) {
       //items is defined as a variable in global scope and you are assigning it a value within the empty array
-      items = result.blackListItem
-      if (!items) {
-        items = []
-      }
+      // if (!items) {
+      //   items = []
+      // }
       items = [...items, inputValue]
       chrome.storage.sync.set({ blackListItem: items }, function () {
         getItems()
       });
       console.log(items)
-    })
+    
 
     document.getElementById("myInput").value = "";
-  }
+  }})
 }
 getItems()
 
-appButton = document.getElementById('app-btn')
-appButton.onclick = function openWin() {
+function openWin() {
   window.open("https://helikopter.herokuapp.com");
 }
 
