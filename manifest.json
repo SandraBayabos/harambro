@@ -13,6 +13,7 @@
       "matches": [
         "<all_urls>"
       ],
+      "exclude_matches": ["https://helikopter.herokuapp.com/*"],
       "run_at": "document_start",
       "js": [
         "jquery-3.4.1.min.js",
