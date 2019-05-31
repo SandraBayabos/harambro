@@ -83,22 +83,22 @@ addItem.onclick = (newElement) => {
   // var li = document.createElement("li");
   chrome.storage.sync.get(['blackListItem'], function (result) {
     items = result.blackListItem
-  var inputValue = document.getElementById("myInput").value;
-  if (inputValue === '') {
-    alert('Please insert a word to blacklist.')
-  }
-  else if (/[ 0-9#$%=@!{},`~&*()'<>?.:;_|^/+\t\r\n\[\]"-]/.test(inputValue)) {
-    alert('Number and symbol is not allowed.');
-  }
-  else if (inputValue.length < 3) {
-    alert('Your word is too common/short.')
-  }
-  else if (items.includes(inputValue)){
-    alert("This word is already in your blacklist.")
-  }
-  else {
+    var inputValue = document.getElementById("myInput").value;
+    if (inputValue === '') {
+      alert('Please insert a word to blacklist.')
+    }
+    else if (/[ 0-9#$%=@!{},`~&*()'<>?.:;_|^/+\t\r\n\[\]"-]/.test(inputValue)) {
+      alert('Number and symbol is not allowed.');
+    }
+    else if (inputValue.length < 3) {
+      alert('Your word is too common/short.')
+    }
+    else if (items.includes(inputValue)) {
+      alert("This word is already in your blacklist.")
+    }
+    else {
 
-    //to retrieve item from chrome storage
+      //to retrieve item from chrome storage
       //items is defined as a variable in global scope and you are assigning it a value within the empty array
       // if (!items) {
       //   items = []
@@ -108,14 +108,17 @@ addItem.onclick = (newElement) => {
         getItems()
       });
       console.log(items)
-    
 
-    document.getElementById("myInput").value = "";
-  }})
+
+      document.getElementById("myInput").value = "";
+    }
+  })
 }
 getItems()
 
-function openWin() {
+appBtn = document.getElementById('app-btn')
+
+appBtn.onclick = function openWin() {
   window.open("https://helikopter.herokuapp.com");
 }
 
