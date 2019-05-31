@@ -100,9 +100,9 @@ addItem.onclick = (newElement) => {
 
       //to retrieve item from chrome storage
       //items is defined as a variable in global scope and you are assigning it a value within the empty array
-      // if (!items) {
-      //   items = []
-      // }
+      if (!items) {
+        items = []
+      }
       items = [...items, inputValue]
       chrome.storage.sync.set({ blackListItem: items }, function () {
         getItems()
