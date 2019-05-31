@@ -183,6 +183,10 @@ submit.setAttribute('value', "Submit");
 submit.setAttribute('class', 'btn btn-outline-info btn-sm')
 form.appendChild(submit);
 
+let newUsers = document.createElement("P")
+newUsers.innerHTML = "For new users, <a target='_blank' href='https://helikopter.herokuapp.com'>Sign Up Here</a>"
+form.appendChild(newUsers)
+
 ///// Upon Loading Popup, check JWT to display form or interface //////
 
 function hideLoginForm() {
