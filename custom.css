@@ -1,5 +1,16 @@
 .options-body{
   font-family: 'Open Sans', sans-serif;
+  background-color: #fff8e0
+}
+
+#accordionExample{
+   border-radius: 200px
+}
+
+.options-container{
+  width: 650px;
+  margin: 0 auto;
+  margin-top: 80px
 }
 
 .btn{
@@ -15,8 +26,12 @@
 	100% {-webkit-transform: rotate(0deg);}
 }
 
-.helikopter-logo{
+#helikopter-logo{
   animation: wiggle 5s infinite;
+  padding-top: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
 }
 
 .bg-pic {
@@ -25,5 +40,20 @@
   right: 0;
   width: 35vw;
   animation: wiggle 10s infinite;
+}
+
+.delete-btn{
+  background: none;
+  color: #b32221;
+  border: 1px;
+  border-style: solid;
+  border-color: #5da1b6;
+  border-radius: 5px;
+  margin: 0 auto
+
+}
+
+.list-group-item{
+  color: #333333
 }
 
