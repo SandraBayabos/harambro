@@ -180,7 +180,7 @@ form.appendChild(input1);
 let submit = document.createElement("input"); //input element, Submit button
 submit.setAttribute('type', "submit");
 submit.setAttribute('value', "Submit");
-submit.setAttribute('class', 'btn btn-primary btn-sm')
+submit.setAttribute('class', 'btn btn-outline-info btn-sm')
 form.appendChild(submit);
 
 ///// Upon Loading Popup, check JWT to display form or interface //////
