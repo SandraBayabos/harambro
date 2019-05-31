@@ -1,7 +1,7 @@
 {
   "name": "Helikopter",
   "version": "1.0",
-  "description": "Censor sensitive content!",
+  "description": "Censors sensitive content!",
   "permissions": [
     "activeTab",
     "declarativeContent",
