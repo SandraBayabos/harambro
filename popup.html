@@ -84,7 +84,8 @@
   border: 1px solid grey;
   border-radius: 3px;
   margin:5px;
-  background-color:rgb(255, 253, 232);
+  background-color:rgb(247, 247, 247)
+;
 }
 .form-container input[type=password]:focus {
   background-color: #ddd;
@@ -112,16 +113,30 @@ form{
   background:rgba(255, 99, 71, 0.2)
 }
 
-#logo{
-  border-bottom: 1px solid lightgrey;
+#logo {
   margin-bottom:10px;
+  margin-left:15px;
+}
+
+
+#logo img:hover {
  
- 
+      -webkit-filter: blur(3px);
+      -moz-filter: blur(3px);
+      -o-filter: blur(3px);
+      -ms-filter: blur(3px);
+      filter: blur(3px);
+    
+      transition: 1s;
 }
 
 .btn-light{
   margin-top:10px;
   width:65px;
+}
+
+.btn-outline-info{
+  margin-top:10px;
 }
 
 nav{
