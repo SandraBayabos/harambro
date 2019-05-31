@@ -1,7 +1,7 @@
 {
-  "name": "Harambro",
+  "name": "Helikopter",
   "version": "1.0",
-  "description": "First Extension!",
+  "description": "Censor sensitive content!",
   "permissions": [
     "activeTab",
     "declarativeContent",
