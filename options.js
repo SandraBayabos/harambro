@@ -87,7 +87,7 @@ addItem.onclick = (newElement) => {
     if (inputValue === '') {
       alert('Please insert a word to blacklist.')
     }
-    else if (/[ 0-9#$%=@!{},`~&*()'<>?.:;_|^/+\t\r\n\[\]"-]/.test(inputValue)) {
+    else if (/[0-9#$%=@!{},`~&*()'<>?.:;_|^/+\t\r\n\[\]"-]/.test(inputValue)) {
       alert('Number and symbol is not allowed.');
     }
     else if (inputValue.length < 3) {
